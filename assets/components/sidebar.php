@@ -40,6 +40,12 @@
                         <span class="text nav-text">Classroom</span>
                     </a>
                 </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class="bi bi-mortarboard-fill icon"></i>
+                        <span class="text nav-text">Subject</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="bottom-content">

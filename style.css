@@ -8,11 +8,13 @@ body {
   background: var(--body-color);
   /* Colors */
   --body-color: #f6f5ff;
-  --background-color: #e4e5f1;
-  --primary-color: #41C0F3;
-  --primary-color-light: #fff;
+  --background-color: #d2d2d2;
+  --primary-color: #eeeeee;
+  --primary-color-light: #ffffff;
+  --sidebar-color: #d2d2d2;
   --toggle-color: #DDD;
   --text-color: #707070;
+  --shadow-color: #abaaaa;
 
   /*  Transition  */
   --tran-02: all 0.2s ease;
@@ -24,11 +26,14 @@ body {
 body.dark {
 
   --body-color: #242424;
-  --background-color: #242526;
-  --primary-color: #3A3B3c;
-  --primary-color-light: #3A3b3c;
+  /* --background-color: #242526; */
+  --background-color: #3a3b3c;
+  --primary-color: #3e3e8f;
+  --primary-color-light: #242424;
+  --sidebar-color: #3a3b3c;
   --toggle-color: #FFF;
   --text-color: #CCC;
+  --shadow-color: #242424;
   background-color: var(--body-color);
 }
 
@@ -46,6 +51,7 @@ body.dark {
   align-items: center;
   background: var(--background-color);
   transition: var(--tran-02);
+  box-shadow: 0 0 15px var(--shadow-color);
 }
 
 .headername {
@@ -137,10 +143,12 @@ i.bi.bi-border-width.icon {
   height: 100%;
   width: 250px;
   padding: 10px 14px;
-  background: var(--background-color);
+  background: var(--sidebar-color);
   transition: var(--tran-02);
   z-index: 100;
   font-family: 'Kanit', sans-serif;
+  box-shadow: 0 0 15px var(--shadow-color);
+  /* เงาที่ฝั่งขวา */
 }
 
 /* ==============reusable css */
@@ -283,7 +291,7 @@ body.dark .sidebar header .toggle {
 
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
-  color: var(--background-color);
+  color: var(--text-color);
 }
 
 body.dark .sidebar li a:hover .icon,
@@ -362,7 +370,7 @@ body.dark .menu-bar .mode i.moon {
   top: 50%;
   left: 6px;
   transform: translateY(-50%);
-  background: var(--background-color);
+  background: var(--shadow-color);
   transition: var(--tran-02);
 }
 
@@ -380,7 +388,7 @@ body.dark .switch::before {
   height: 100%;
   width: 250px;
   padding: 10px 14px;
-  background: var(--background-color);
+  background: var(--sidebar-color);
   transition: var(--tran-03);
   z-index: 98;
   font-family: 'Kanit', sans-serif;
@@ -549,7 +557,7 @@ body.dark .sidebar-responsive header .toggle {
 
 .sidebar-responsive li a:hover .icon,
 .sidebar-responsive li a:hover .text {
-  color: var(--background-color);
+  color: var(--text-color);
 }
 
 body.dark .sidebar-responsive li a:hover .icon,
@@ -630,7 +638,7 @@ body.dark .menu-bar .mode i.moon {
   color: var(--text-color);
 
   /* 1ด้านบน (top)2ด้านขวา (right)3ด้านล่าง (bottom)4ด้านซ้าย (left) */
-  margin: 10px 20px 10px 298px;
+  margin: 10px 20px 0px 298px;
 }
 
 .row {
@@ -640,9 +648,12 @@ body.dark .menu-bar .mode i.moon {
   height: 25%;
 }
 
-.row.row-cols-4>* {
+.row-cols-4>* {
   flex: 0 0 25%;
-  max-width: 25%;
+  max-width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 
 /* flex-grow กำหนดพื้นที่  flex-shrink มันจะหดตัวเมื่อมีพื้นที่ไม่เพียงพอ flex-basis กำหนดขนาดเริ่มต้น flex item*/
@@ -667,6 +678,102 @@ body.dark .menu-bar .mode i.moon {
   /* การเพิ่ม Padding 4 ทางทั้งสี่ของ Element */
 }
 
+/* /////////////////////////////////////////////////////////////// custom special */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: var(--sidebar-color);
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.card-body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 1 0 25%;
+  min-height: 1px;
+  padding: 1.25rem;
+  align-items: center;
+  align-content: center;
+}
+
+
+.card-title {
+  margin-bottom: 0rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.card-header {
+  font-size: 20px;
+}
+
+.card-text {
+  flex: 1 1 auto;
+  padding: 0px 0px 0px 5px;
+  align-content: center;
+}
+
+.card-text-number {
+  font-size: 24px;
+}
+
+.card-icon {
+  width: auto;
+  margin-left: 15px;
+  margin-right: 40px;
+  font-size: 38px;
+}
+
+/* /////////////////////////////////////////////////////////////// custom Table page */
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  padding: 10px 10px;
+}
+
+.table-thead {
+  background-color: var(--sidebar-color);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.table-active {
+  background-color: rgba(200, 200, 200, 0.393);
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--primary-color);
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+
 /* /////////////////////////////////////////////////////////////// Responsive page */
 
 /* Use when the screen size is greater than or equal to 600px*/
@@ -678,22 +785,22 @@ body.dark .menu-bar .mode i.moon {
 }
 
 /* Use when the screen size is less than or equal to 600px */
+
 @media screen and (max-width: 600px) {
   .col {
-    flex: 1 0 100%;
+    flex: 1 0 50%;
+  }
+  .row{
+    display: block;
   }
 
-  .row.row-cols-4>* {
-    flex: 1 0 100%;
-    max-width: 100%;
-  }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 900px) {
   .col {
-    flex: 0 0 100%;
-    /* flex-grow กำหนดพื้นที่  flex-shrink มันจะหดตัวเมื่อมีพื้นที่ไม่เพียงพอ flex-basis กำหนดขนาดเริ่มต้น flex item*/
+    flex: 1 0 40%;
   }
+
 }
 
 @media screen and (min-width: 1400px) {
@@ -717,6 +824,7 @@ body.dark .menu-bar .mode i.moon {
   .sidebar {
     margin-left: -278px;
     transition: var(--tran-02);
+    box-shadow: none;
   }
 
   /* =============================== */

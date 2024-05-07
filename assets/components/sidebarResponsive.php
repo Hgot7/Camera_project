@@ -40,21 +40,27 @@
                         <span class="text nav-text">Classroom</span>
                     </a>
                 </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class="bi bi-mortarboard-fill icon"></i>
+                        <span class="text nav-text">Subject</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="bottom-content">
+            <li class="logout">
+                <a href="#">
+                    <i class="bi bi-box-arrow-left icon"></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
             <li class="mode">
                 <i class="bi bi-person-circle sidebar-responsive-icon"></i>
                 <div class="sidebar-responsive-text">
                     <span class="firstname">Natchapon</span>
                     <span class="role">Admin</span>
                 </div>
-            </li>
-            <li class="logout">
-                <a href="#">
-                    <i class="bi bi-box-arrow-left icon"></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
             </li>
             <li class="mode">
                 <div class="moon-sun">
