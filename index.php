@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./style.css">
     <!-- นำเข้าไฟล์ CSS ของ Bootstrap Icons ผ่าน CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" href="./assets/images/cameradark.png" type="png">
     <title>RIETC</title>
     <script src="./script.js"></script>
 </head>
@@ -139,14 +140,21 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
+                <div class="card">
+                    <div class="card-body">
+                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
                     </div>
+                </div>
             </div>
             <div class="col">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
+                <div class="card">
+                    <div class="card-header">
+                        <P>Lorem.</P>   
+                    </div>
+                    <div class="card-body">
+                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
+                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
+                    </div>
                 </div>
             </div>
             <div class="col">
