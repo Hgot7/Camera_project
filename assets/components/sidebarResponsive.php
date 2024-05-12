@@ -16,31 +16,31 @@
     <div class="menu-bar">
         <div class="menu">
             <ul class="menu-link">
-                <li class="nav-link">
+                <li class="menu-bar-link">
                     <a href="#">
                         <i class="bi bi-house-fill icon"></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="menu-bar-link">
                     <a href="#">
                         <i class="bi bi-building icon"></i>
                         <span class="text nav-text">Building</span>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="menu-bar-link">
                     <a href="#">
                         <i class="bi bi-camera-fill icon"></i>
                         <span class="text nav-text">Camera</span>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="menu-bar-link">
                     <a href="#">
                         <i class="bi bi-box-seam icon"></i>
                         <span class="text nav-text">Classroom</span>
                     </a>
                 </li>
-                <li class="nav-link">
+                <li class="menu-bar-link">
                     <a href="#">
                         <i class="bi bi-mortarboard-fill icon"></i>
                         <span class="text nav-text">Subject</span>

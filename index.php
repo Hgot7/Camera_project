@@ -149,7 +149,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <P>Lorem.</P>   
+                        <P>Lorem.</P>
                     </div>
                     <div class="card-body">
                         <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>

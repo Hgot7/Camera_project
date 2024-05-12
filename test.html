@@ -1,94 +1,47 @@
 <!DOCTYPE html>
-<html lang="th">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>จำนวนการประชุม</title>
-    <style>
-        /* ปรับแต่งสีของ card header  */
-        /* style.css */
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 20px;
-        }
-
-        .meeting-card {
-            width: 300px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .card-header {
-            background-color: #f8f9fa;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card-header h2 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .meeting-count {
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .meeting-type {
-            font-size: 14px;
-            color: #999;
-        }
-    </style>
+ <title>User Experience Research Form</title>
+ <style>
+   body {
+     font-family: Arial, sans-serif;
+     background-color: #ff7f7f;
+     padding: 20px;
+   }
+   form {
+     background-color: #ffdada;
+     padding: 20px;
+     border-radius: 5px;
+   }
+   input[type=text] {
+     width: 100%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     box-sizing: border-box;
+     border: 2px solid #ccc;
+     border-radius: 4px;
+   }
+ </style>
 </head>
-
 <body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header text-center bg-primary text-white">
-                        จำนวนการประชุม
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="display-4">36</h1>
-                        <p class="lead">เดือนนี้</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header text-center bg-warning text-dark">
-                        การประชุมเลื่อน
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="display-4">20</h1>
-                        <p class="lead">เดือนนี้</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header text-center bg-danger text-white">
-                        การประชุมที่ยกเลิก
-                    </div>
-                    <div class="card-body text-center">
-                        <h1 class="display-4">10</h1>
-                        <p class="lead">เดือนนี้</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+ <form>
+   <h2>User Experience Research Form</h2>
+   <label for="first">First</label>
+   <input type="text" id="first" name="first" placeholder="First Name">
 
+   <label for="last">Last</label>
+   <input type="text" id="last" name="last" placeholder="Last Name">
+
+   <label for="email">Email</label>
+   <input type="text" id="email" name="email" placeholder="Email Address">
+
+   <label for="phone">Phone</label>
+   <input type="text" id="phone" name="phone" placeholder="#### ### ####">
+
+   <label for="street">Address</label>
+   <input type="text" id="street" name="street" placeholder="Street Address">
+
+   <input type="text" id="street2" name="street2" placeholder="Street Address Line 2">
+ </form>
+</body>
 </html>

@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="icon" href="./assets/images/cameradark.png" type="png">
     <title>RIETC</title>
+    <script src="./jquery.js"></script>
     <script src="./script.js"></script>
 </head>
 
@@ -19,7 +20,7 @@
     <?php include_once("./assets/components/sidebarResponsive.php"); ?>
 
     <div class="container">
-        <h1 style=" margin-bottom: inherit; margin-top: inherit;">Building</h1>
+        <h1>Building</h1>
     </div>
 
     <div class="container">
@@ -33,7 +34,7 @@
                         <label for="building" class="form-label">ตั้งชื่ออาคาร</label>
                         <form action="building/add_building.php" method="post">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="name" autocomplete="off" required="">
+                                <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="name" autocomplete="off" required="" >
                                 <span class="input-group-text">-</span>
                                 <input type="text" class="form-control" placeholder="ชื่ออาคาร" name="building_name" autocomplete="off" required="">
                             </div>
@@ -45,21 +46,22 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>เพิ่มห้องในอาคาร</P>
+                        <P>เพิ่มห้องเรียนในอาคาร</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">ตั้งชื่อห้องในอาคาร</label>
+                        <label for="building" class="form-label">อาคาร</label>
                         <form action="building/add_room.php" method="post" onsubmit="return validateForm2();">
                             <!-- เพิ่ม form tag และกำหนด action ไปที่ไฟล์ process.php -->
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="building" id="" aria-label="Floating label select example">
-                                    <option value="null" selected="">อาคาร</option>
+                                    <option value="null" selected="">เลือกอาคาร</option>
                                     <option value="TC">TC - ?????????????????</option>
                                     <option value="EL">EL - ??????????????</option>
                                     <option value="ME">ME - ????????</option>
                                     <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
                                 </select>
                             </div>
+                            <label for="building" class="form-label">ตั้งชื่อห้องเรียนในอาคาร</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="เลขห้อง เช่น 101" name="room_number" autocomplete="off" required="">
                                 <span class="input-group-text">-</span>
@@ -77,12 +79,12 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>ข้อมูลห้อง</P>
+                        <P>ข้อมูลห้องเรียน</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">เลือกอาคาร</label>
+                        <label for="building" class="form-label">อาคาร</label>
                         <select class="form-select mb-3" name="building" id="building" aria-label="Floating label select example">
-                            <option value="null" selected="">อาคาร</option>
+                            <option value="null" selected="">เลือกอาคาร</option>
                             <option value="TC">TC - ?????????????????</option>
                             <option value="EL">EL - ??????????????</option>
                             <option value="ME">ME - ????????</option>
@@ -99,7 +101,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="table-active">
+                                    <tr class="table1-active">
                                         <td scope="row">001</td>
                                         <td>อารามสงฆ์</td>
                                         <td>102</td>
@@ -107,7 +109,7 @@
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
-                                    <tr class="table-active">
+                                    <tr class="table1-active">
                                         <td scope="row">001</td>
                                         <td>อารามสงฆ์</td>
                                         <td>102</td>
@@ -115,7 +117,7 @@
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
-                                    <tr class="table-active">
+                                    <tr class="table1-active">
                                         <td scope="row">001</td>
                                         <td>อารามสงฆ์</td>
                                         <td>102</td>
@@ -130,6 +132,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container ">
     </div>
 </body>
 

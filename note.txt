@@ -98,39 +98,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-
-// nav-tabs in camera.php add class active when click in nav-tabs
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    // รับ Element ของเมนูทั้งหมด
-    document.querySelectorAll('.nav-link').forEach(button => {
-        button.addEventListener('click', function () {
-            // Remove 'active' class from all buttons
-            document.querySelectorAll('.nav-link').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Add 'active' class to the clicked button
-            this.classList.add('active');
-        });
-    });
-});
-
-// หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง
-document.addEventListener("DOMContentLoaded", function () {
-
-    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (tab) {
-        tab.addEventListener('click', function (event) {
-            event.preventDefault(); // ป้องกันการโหลดหน้าใหม่
-            var target = document.querySelector(tab.getAttribute('data-bs-target'));
-            if (!target.classList.contains('active')) {
-                document.querySelectorAll('.tab-pane').forEach(function (tabPane) {
-                    tabPane.classList.remove('active');
-                });
-                target.classList.add('active');
-            }
-        });
-    });
-
-});
+// 
