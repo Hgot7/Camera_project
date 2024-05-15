@@ -2,8 +2,8 @@
     <header>
         <div class="imagelogo">
             <span class="image">
-                <img class="light" src="./assets/images/cameralight.png" alt="logo" />
-                <img class="dark" src="./assets/images/cameradark.png" alt="logo" />
+                <img class="light" src="../assets/images/cameralight.png" alt="logo" />
+                <img class="dark" src="../assets/images/cameradark.png" alt="logo" />
 
             </span>
             <div class="text header-text">
@@ -17,19 +17,19 @@
         <div class="menu">
             <ul class="menu-link">
                 <li class="menu-bar-link">
-                    <a href="#">
+                    <a href="../../dashboard.php">
                         <i class="bi bi-house-fill icon"></i>
                         <span class="text nav-text">Dashboard</span>
                     </a>
                 </li>
                 <li class="menu-bar-link">
-                    <a href="#">
+                    <a href="../../building.php">
                         <i class="bi bi-building icon"></i>
                         <span class="text nav-text">Building</span>
                     </a>
                 </li>
                 <li class="menu-bar-link">
-                    <a href="#">
+                    <a href="../../camera.php">
                         <i class="bi bi-camera-fill icon"></i>
                         <span class="text nav-text">Camera</span>
                     </a>

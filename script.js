@@ -97,6 +97,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+// Active Menu Link based on Current URL Path in responsive-sidebar and sidebar
+const namepath = ['dashboard', 'building', 'camera', 'classroom', 'subject'];
+const currentPath = window.location.pathname;
+
+const menuLinks = document.querySelectorAll('.menu-bar-link');
+
+let matchedIndex = -1;
+
+for (let i = 0; i < namepath.length; i++) {
+  const pathWithSlash = `/${namepath[i]}`;
+  if (currentPath.includes(pathWithSlash)) {
+    matchedIndex = i;
+    break; // เลือก index แรกที่ตรงและหยุดวนลูป
+  }
+}
+
+menuLinks.forEach((link, index) => {
+  const linkPath = link.querySelector('a').getAttribute('href');
+  const pathWithSlash = `/${namepath[matchedIndex]}`;
+
+  if (linkPath.includes(pathWithSlash)) {
+    link.classList.add('active');
+  } else {
+    link.classList.remove('active');
+  }
+});
+
 });
 
 // nav-tabs in camera.php add class active when click in nav-tabs
@@ -110,7 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('.nav-link').forEach(btn => {
                 btn.classList.remove('active');
             });
-
             // Add 'active' class to the clicked button
             this.classList.add('active');
         });
@@ -120,17 +146,62 @@ document.addEventListener("DOMContentLoaded", function () {
 // หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง
 document.addEventListener("DOMContentLoaded", function () {
 
-    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (tab) {
-        tab.addEventListener('click', function (event) {
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
+        tab.addEventListener('click', function(event) {
             event.preventDefault(); // ป้องกันการโหลดหน้าใหม่
-            var target = document.querySelector(tab.getAttribute('data-bs-target'));
-            if (!target.classList.contains('active')) {
-                document.querySelectorAll('.tab-pane').forEach(function (tabPane) {
-                    tabPane.classList.remove('active');
+            // หา target tab-pane ที่เกี่ยวข้องกับแท็บที่ถูกคลิก
+            var targetId = tab.getAttribute('data-bs-target');
+            var targetTabPane = document.querySelector(targetId);
+
+            // ตรวจสอบว่า tab-pane นี้ไม่ได้เป็น 'show active' แล้วเท่านั้นที่จะดำเนินการ
+            if (!targetTabPane.classList.contains('show') && !targetTabPane.classList.contains('active')) {
+                // ลบคลาส 'active' ออกจาก tab-pane ที่มีอยู่ทั้งหมด
+                document.querySelectorAll('.tab-pane').forEach(function(tabPane) {
+                    tabPane.classList.remove('active', 'show');
                 });
-                target.classList.add('active');
+                // เพิ่มคลาส 'show active' ให้กับ target tab-pane
+                // targetTabPane.classList.add('active', 'show');
+                targetTabPane.classList.add('active');
+                setTimeout(function() {
+                    targetTabPane.classList.add('show');
+                }, 50); 
             }
         });
     });
 
 });
+// Remove class show of spinner
+document.addEventListener("DOMContentLoaded", function () {
+   // Spinner
+    var spinner = function () {
+    setTimeout(function () {
+      var spinnerElement = document.getElementById('spinner');
+      if (spinnerElement !== null) {
+        spinnerElement.classList.remove('show');
+      }
+    }, 1);
+  };
+  
+  spinner();
+});
+
+// หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง
+
+// document.addEventListener("DOMContentLoaded", function () {
+
+//  // บันทึก scroll position เมื่อหน้าเว็บจะปิดหรือรีเฟรช
+// window.addEventListener('beforeunload', function() {
+//     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+//     localStorage.setItem('scrollPosition', scrollPosition);
+//   });
+  
+//   // คืนค่า scroll position เมื่อหน้าเว็บโหลดเสร็จ
+//   window.addEventListener('load', function() {
+//     const savedScrollPosition = localStorage.getItem('scrollPosition');
+//     if (savedScrollPosition) {
+//       window.scrollTo(0, savedScrollPosition);
+//       localStorage.removeItem('scrollPosition'); // ลบค่าออกจาก localStorage เมื่อใช้งานแล้ว
+//     }
+//   });
+
+// });

@@ -2,6 +2,26 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;1,200;1,300;1,400&display=swap');
 
+/* Change the color of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: var(--text-color);
+  /* Specify the desired color for the scrollbar thumb */
+  border-radius: 10px;
+  /* Add rounded corners to the scrollbar thumb */
+}
+
+/* Change the color of the scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background-color: var(--body-color);
+  /* Specify the desired color for the scrollbar track */
+}
+
+/* Optional: Change the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  /* Adjust the width as desired */
+}
+
 body {
   margin: initial;
   height: 100vh;
@@ -20,6 +40,8 @@ body {
   --text-color: #707070;
   --shadow-color: #abaaaa;
 
+
+
   /* select arrow-down */
   --bs-form-select-bg-img: url(./assets/icons/dark-down.svg);
   --select-border-color: #d2d2d2;
@@ -29,6 +51,7 @@ body {
   --tran-03: all 0.3s ease;
   --tran-04: all 0.4s ease;
   --tran-05: all 0.5s ease;
+
 }
 
 body.dark {
@@ -329,6 +352,11 @@ body.dark .sidebar li a:hover .text {
   justify-content: space-between;
 }
 
+/* active class when to click */
+.sidebar .menu-bar-link.active {
+  background-color: var(--primary-color);
+}
+
 /* mode  */
 .menu-bar .mode {
   position: relative;
@@ -415,6 +443,7 @@ body.dark .switch::before {
   z-index: 98;
   font-family: 'Kanit', sans-serif;
   box-shadow: 0 0 15px var(--shadow-color);
+  overflow-y: auto;
 }
 
 .sidebar-responsive.show {
@@ -432,12 +461,60 @@ body.dark .switch::before {
 .overlay {
   display: none;
   position: fixed;
+  top: 0;
   z-index: 99;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.3);
   opacity: 1;
   transition: opacity 0.3s ease 0s;
+}
+
+/* ////////////////////////////////////////  Spinner*/
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background-color: var(--body-color);
+  width: 100% !important;
+  height: 100vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*** Spinner ***/
+.spinner-border {
+  display: inline-block;
+  font-size: 1.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease-out, visibility 0s linear .5s;
+  z-index: 99999;
+}
+
+#spinner.show {
+  transition: opacity .5s ease-out, visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
 }
 
 /* ==============reusable css */
@@ -596,6 +673,11 @@ body.dark .sidebar-responsive li a:hover .text {
   justify-content: space-between;
 }
 
+/* active class when to click */
+.sidebar-responsive .menu-bar-link.active {
+  background-color: var(--primary-color);
+}
+
 /* mode  */
 .menu-bar .mode {
   position: relative;
@@ -648,6 +730,10 @@ body.dark .menu-bar .mode i.moon {
   width: 48px;
   border-radius: 25px;
   background: var(--toggle-color);
+}
+
+.sidebar-responsive .bottom-content {
+  padding-bottom: 50px;
 }
 
 /* ////////////////////////////////////////////////////////////////// container row col body */
@@ -756,6 +842,42 @@ body.dark .menu-bar .mode i.moon {
 
 .mb-4 {
   margin-bottom: 1.5rem !important;
+}
+
+/* กำหนด margin-left and -right */
+.mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.mx-1 {
+  margin-left: 0.25rem !important;
+  margin-right: 0.25rem !important;
+}
+
+.mx-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
+.mx-3 {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+.mx-4 {
+  margin-left: 1.5rem !important;
+  margin-right: 1.5rem !important;
+}
+
+.mx-5 {
+  margin-left: 3rem !important;
+  margin-right: 3rem !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* /////////////////////////////////////////////////////////////// custom text color */
@@ -910,18 +1032,24 @@ body.dark .menu-bar .mode i.moon {
   list-style: none;
 }
 
+nav.mb-2 {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1px;
+}
+
 /* Navbar Tabs */
 .nav-tabs {
-  border-bottom: 3px solid var(--body-color);
   margin-right: 1px;
 }
 
 .nav-tabs .nav-link {
   border: 1px solid transparent;
+  border-bottom: 3px solid var(--body-color);
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   font-family: 'Kanit', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   color: var(--text-color);
   max-width: 100%;
 }
@@ -1092,8 +1220,9 @@ select:focus {
 }
 
 .fade {
-  transition: opacity 0.15s linear;
+  transition: opacity 0.3s linear;
   opacity: 0;
+
 }
 
 .fade.show {
@@ -1295,8 +1424,38 @@ select:focus {
   border-bottom-width: 1px;
 }
 
+/* /////////////////////////////////////////////////////////////// custom building page */
+.col.mb-2 {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: initial;
+}
+
+.form-floating a:first-of-type {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
 
 /* /////////////////////////////////////////////////////////////// Responsive page */
+
+@media screen and (max-width: 420px) {
+  .col.mb-2 {
+    display: block;
+  }
+
+  .form-floating a:first-of-type {
+    margin-left: 0rem !important;
+    margin-right: 0.5rem !important;
+  }
+
+  .form-floating a.btn.btn-success {
+    text-decoration: none;
+    white-space: normal;
+  }
+
+
+}
 
 /* Use when the screen size is greater than or equal to 600px*/
 @media screen and (min-width: 600px) {
@@ -1383,4 +1542,8 @@ select:focus {
   }
 }
 
-/* //////////////////////////////////////// */
+a.btn.btn-success {
+  width: auto;
+  /* text-decoration: none; */
+  /* white-space: normal; */
+}

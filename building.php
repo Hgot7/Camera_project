@@ -14,10 +14,15 @@
 </head>
 
 <body>
-    <div class="overlay"></div>
     <?php include_once("./assets/components/header.php"); ?>
     <?php include_once("./assets/components/sidebar.php"); ?>
     <?php include_once("./assets/components/sidebarResponsive.php"); ?>
+
+    <div class="overlay"></div>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show spinner-container">
+        <div class="spinner-border text-danger" role="status"></div>
+    </div>
 
     <div class="container">
         <h1>Building</h1>
@@ -28,68 +33,23 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>เพิ่มอาคาร</P>
-                    </div>
-                    <div class="card1-body">
-                        <label for="building" class="form-label">ตั้งชื่ออาคาร</label>
-                        <form action="building/add_building.php" method="post">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="name" autocomplete="off" required="" >
-                                <span class="input-group-text">-</span>
-                                <input type="text" class="form-control" placeholder="ชื่ออาคาร" name="building_name" autocomplete="off" required="">
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-width">บันทึก</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card1">
-                    <div class="card1-header">
-                        <P>เพิ่มห้องเรียนในอาคาร</P>
-                    </div>
-                    <div class="card1-body">
-                        <label for="building" class="form-label">อาคาร</label>
-                        <form action="building/add_room.php" method="post" onsubmit="return validateForm2();">
-                            <!-- เพิ่ม form tag และกำหนด action ไปที่ไฟล์ process.php -->
-                            <div class="form-floating mb-3">
-                                <select class="form-select" name="building" id="" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกอาคาร</option>
-                                    <option value="TC">TC - ?????????????????</option>
-                                    <option value="EL">EL - ??????????????</option>
-                                    <option value="ME">ME - ????????</option>
-                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
-                                </select>
-                            </div>
-                            <label for="building" class="form-label">ตั้งชื่อห้องเรียนในอาคาร</label>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="เลขห้อง เช่น 101" name="room_number" autocomplete="off" required="">
-                                <span class="input-group-text">-</span>
-                                <input type="text" class="form-control" placeholder="ชื่อห้อง" name="room_name" autocomplete="off" required="">
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-width">บันทึก</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card1">
-                    <div class="card1-header">
                         <P>ข้อมูลห้องเรียน</P>
                     </div>
                     <div class="card1-body">
                         <label for="building" class="form-label">อาคาร</label>
-                        <select class="form-select mb-3" name="building" id="building" aria-label="Floating label select example">
-                            <option value="null" selected="">เลือกอาคาร</option>
-                            <option value="TC">TC - ?????????????????</option>
-                            <option value="EL">EL - ??????????????</option>
-                            <option value="ME">ME - ????????</option>
-                            <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
-                        </select>
+                        <div class="col mb-2">
+                            <select class="form-select" name="building" id="building" aria-label="Floating label select example">
+                                <option value="null" selected="">เลือกอาคาร</option>
+                                <option value="TC">TC - ?????????????????</option>
+                                <option value="EL">EL - ??????????????</option>
+                                <option value="ME">ME - ????????</option>
+                                <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                            </select>
+                            <div class="form-floating"style="display:flex;flex-direction:row;margin-top:initial">
+                                <a href="./building/add_building.php" class="btn btn-success">เพิ่มอาคาร</a>
+                                <a href="./building/add_room.php" class="btn btn-primary"style="margin-right:1px;">เพิ่มห้องเรียนในอาคาร</a>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
@@ -132,6 +92,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <div class="container ">
     </div>

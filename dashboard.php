@@ -13,12 +13,15 @@
 </head>
 
 <body>
-    <div class="overlay"></div>
-
-    </div>
     <?php include_once("./assets/components/header.php"); ?>
     <?php include_once("./assets/components/sidebar.php"); ?>
     <?php include_once("./assets/components/sidebarResponsive.php"); ?>
+
+    <div class="overlay"></div>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show spinner-container">
+        <div class="spinner-border text-danger" role="status"></div>
+    </div>
 
     <div class="container">
         <h1 style=" margin-bottom: inherit; margin-top: inherit;">Dashboard</h1>
@@ -139,7 +142,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -167,7 +170,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </body>
 
 </html>
