@@ -1449,7 +1449,7 @@ select:focus {
     margin-right: 0.5rem !important;
   }
 
-  .form-floating a.btn.btn-success {
+  .form-floating a.btn {
     text-decoration: none;
     white-space: normal;
   }

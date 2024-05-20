@@ -25,7 +25,7 @@
     </div>
 
     <div class="container">
-        <h1>Building</h1>
+        <h1>Classroom</h1>
     </div>
 
     <div class="container">
@@ -33,50 +33,54 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>ข้อมูลห้องเรียนในอาคาร</P>
+                        <P>ข้อมูลชั้นเรียนในแผนก</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">อาคาร</label>
+                        <label for="building" class="form-label">แผนก</label>
                         <div class="col mb-2">
                             <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                <option value="null" selected="">เลือกอาคาร</option>
+                                <option value="null" selected="">เลือกแผนก</option>
                                 <option value="TC">TC - ?????????????????</option>
                                 <option value="EL">EL - ??????????????</option>
                                 <option value="ME">ME - ????????</option>
                                 <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
                             </select>
-                            <div class="form-floating"style="display:flex;flex-direction:row;margin-top:initial">
-                                <a href="./building/add_building.php" class="btn btn-success">เพิ่มอาคาร</a>
-                                <a href="./building/add_room.php" class="btn btn-primary"style="margin-right:1px;">เพิ่มห้องเรียนในอาคาร</a>
+                            <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
+                                <a href="./classroom/add_department.php" class="btn btn-primary">เพิ่มแผนก</a>
+                                <a href="./classroom/add_classroom.php" class="btn btn-success" style="margin-right: 1px;">เพิ่มชั้นเรียน</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
-                                        <th scope="col">เลขห้อง</th>
+                                        <th scope="col">ระดับชั้น</th>
                                         <th scope="col">ชื่อห้อง</th>
-                                        <th scope="col">ลบห้องเรียน</th>
+                                        <th scope="col">LINE TOKEN</th>
+                                        <th scope="col">ลบชั้นเรียน</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="table1-active">
-                                        <td scope="row">001</td>
-                                        <td>อารามสงฆ์</td>
+                                        <td scope="row">ปวช 1</td>
+                                        <td>1 1/3</td>
+                                        <td>Lorem ipsum dolor sit amet.</td>
                                         <td>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">001</td>
-                                        <td>อารามสงฆ์</td>
+                                        <td scope="row">ปวช 1</td>
+                                        <td>1 1/3</td>
+                                        <td>Lorem ipsum dolor sit amet.</td>
                                         <td>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">001</td>
-                                        <td>อารามสงฆ์</td>
+                                        <td scope="row">ปวช 1</td>
+                                        <td>1 1/3</td>
+                                        <td>Lorem ipsum dolor sit amet.</td>
                                         <td>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>

@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="menu-bar-link">
-                    <a href="#">
+                    <a href="../../classroom.php">
                         <i class="bi bi-box-seam icon"></i>
                         <span class="text nav-text">Classroom</span>
                     </a>

@@ -54,7 +54,7 @@
                                 <span class="input-group-text">-</span>
                                 <input type="text" class="form-control" placeholder="ชื่อห้อง" name="room_name" autocomplete="off" required="">
                             </div>
-                            <button type="submit" class="btn btn-danger">บันทึก</button>
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
                             <a type="button" href="../building.php" class="btn btn-secondary ">กลับ</a>
                         </form>
                     </div>

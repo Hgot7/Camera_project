@@ -70,7 +70,7 @@
                                 </select>
 
                             </div>
-                            <button type="submit" class="btn btn-danger">บันทึก</button>
+                            <button type="submit" class="btn btn-success">บันทึก</button>
                             <a type="button" href="../camera.php" class="btn btn-secondary ">กลับ</a>
                         </form>
                     </div>

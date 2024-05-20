@@ -25,7 +25,7 @@
     </div>
 
     <div class="container">
-        <h1>Building</h1>
+        <h1>Classroom</h1>
     </div>
 
     <div class="container">
@@ -33,18 +33,16 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>เพิ่มอาคาร</P>
+                        <P>เพิ่มแผนก</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">ตั้งชื่ออาคาร</label>
-                        <form action="building/add_building.php" method="post">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="name" autocomplete="off" required="">
-                                <span class="input-group-text">-</span>
-                                <input type="text" class="form-control" placeholder="ชื่ออาคาร" name="building_name" autocomplete="off" required="">
+                        <label for="building" class="form-label">ตั้งชื่อแผนก</label>
+                        <form action="classroom/add_department.php" method="post" onsubmit="return validateForm2();">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="ชื่อแผนก" name="name" autocomplete="off" required="">
                             </div>
-                            <button type="submit" class="btn btn-success">บันทึก</button>
-                            <a type="button" href="../building.php" class="btn btn-secondary ">กลับ</a>
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                            <a type="button" href="../classroom.php" class="btn btn-secondary ">กลับ</a>
                         </form>
                     </div>
                 </div>
@@ -52,6 +50,8 @@
         </div>
     </div>
     </div>
+    </div>
+    <div class="container ">
     </div>
 </body>
 

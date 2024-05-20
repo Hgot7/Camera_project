@@ -54,17 +54,6 @@
                                     <option value="null" selected="">เลือกห้องเรียน</option>
                                 </select>
                             </div>
-                            <div class="form-floating mb-3">
-                                <label for="camera" class="form-label">กล้อง</label>
-                                <select class="form-select" name="camera" id="camera" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกกล้อง</option>
-                                    <option value="1">001</option>
-                                    <option value="2">002</option>
-                                    <option value="5">005</option>
-                                    <option value="7">008</option>
-                                    <option value="9">009</option>
-                                </select>
-                            </div>
                             <button type="submit" class="btn btn-danger">บันทึก</button>
                             <a type="button" href="../camera.php" class="btn btn-secondary ">กลับ</a>
                         </form>
