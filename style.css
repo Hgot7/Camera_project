@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;1,200;1,300;1,400&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 /* Change the color of the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
   background-color: var(--text-color);
@@ -20,6 +22,26 @@
 ::-webkit-scrollbar {
   width: 7px;
   /* Adjust the width as desired */
+}
+/* =============================== horizontal scrollbar ========================  */
+/* Change the color of the horizontal scrollbar thumb */
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: var(--text-color);
+  /* Specify the desired color for the scrollbar thumb */
+  border-radius: 10px;
+  /* Add rounded corners to the scrollbar thumb */
+}
+
+/* Change the color of the horizontal scrollbar track (background) */
+::-webkit-scrollbar-track:horizontal {
+  background-color: var(--body-color);
+  /* Specify the desired color for the scrollbar track */
+}
+
+/* Optional: Change the height of the horizontal scrollbar */
+::-webkit-scrollbar:horizontal {
+  height: 7px;
+  /* Adjust the height as desired */
 }
 
 body {
@@ -105,8 +127,8 @@ body.dark {
   left: -40px;
   margin-left: 30px;
   font-size: 27px;
-  font-weight: 500;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
   color: var(--text-color);
   text-decoration: none;
   pointer-events: none;
@@ -995,6 +1017,7 @@ body.dark .menu-bar .mode i.moon {
 
 .card1-header {
   padding-left: 20px;
+  padding-right: 20px;
   border: outset solid;
   border-radius: 0.25rem 0.25rem 0rem 0px;
   /*  มุมบนซ้าย, มุมบนขวา , มุมล่างขวา , มุมล่างซ้าย */
@@ -1370,6 +1393,173 @@ select:focus {
 }
 
 
+/* /////////////////////////////////////////////////////////////// custom modal */
+/* Custom CSS for modal */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black w/ opacity */
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.modal.fade {
+  display: none;
+  transition: opacity 0.15s linear;
+}
+
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+/* Modal dialog */
+.modal-dialog {
+  position: relative;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(-100%);
+  transition: transform 0.5s ease;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: var(--sidebar-color);
+  margin: 10% 20px 0px 298px;
+  border-radius: 5px;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: var(--text-color);
+  font-size: 24px;
+}
+
+/* Modal body */
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 16px;
+  font-size: 20px;
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* border-bottom: 1px solid var(--text-color); */
+  padding: 1rem 1rem;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+/* Modal footer */
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: right;
+  padding: 16px;
+  /* border-top: 1px solid var(--text-color); */
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.modal-header,
+.modal-footer {
+  background-color: var(--sidebar-color);
+  align-items: center;
+  color: var(--text-color);
+}
+
+/* cross symbol */
+.btn-close {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-close::before,
+.btn-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: var(--text-color);
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: background-color 0.2s;
+}
+
+.btn-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.btn-close:hover::before,
+.btn-close:hover::after {
+  background-color: #f00;
+  /* Change color on hover */
+}
+
+.btn-close:focus {
+  outline: none;
+}
+
+/* Static effect */
+.modal-static .modal-content {
+  transform: scale(1.1);
+  /* animation: shake 0.3s ease; */
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-10px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
 /* /////////////////////////////////////////////////////////////// custom Table page */
 .table-responsive {
   display: block;
@@ -1426,6 +1616,13 @@ select:focus {
 
 /* /////////////////////////////////////////////////////////////// custom building page */
 .col.mb-2 {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: initial;
+}
+
+.col.mb-0 {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -1540,6 +1737,12 @@ select:focus {
     margin: 10px 20px 0px 20px;
     transition: var(--tran-02);
   }
+
+  /* ======================================== */
+  .modal-content {
+    margin: 10% 20px 0px 20px;
+  }
+
 }
 
 a.btn.btn-success {

@@ -38,7 +38,7 @@
                     <div class="card1-body">
                         <label for="building" class="form-label">ตั้งชื่อแผนก</label>
                         <form action="classroom/add_department.php" method="post" onsubmit="return validateForm2();">
-                            <div class="mb-3">
+                            <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="ชื่อแผนก" name="name" autocomplete="off" required="">
                             </div>
                             <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -52,6 +52,39 @@
     </div>
     </div>
     <div class="container ">
+        <div class="card1">
+            <div class="card1-body">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    เพิ่มแผนก
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="staticBackdropLabel">ตั้งชื่อแผนก</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="classroom/add_department.php" method="post" onsubmit="return validateForm2();">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="ชื่อแผนก" name="name" autocomplete="off" required="">
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">บันทึก</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 

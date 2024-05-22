@@ -184,6 +184,58 @@ document.addEventListener("DOMContentLoaded", function () {
   
   spinner();
 });
+// show of Modal
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the modal element
+    var modal = document.getElementById("staticBackdrop");
+  
+    // Get the button that opens the modal
+    var btn = document.querySelector("[data-bs-toggle='modal']");
+  
+    // Get the close buttons within the modal
+    var closeModalBtns = modal.querySelectorAll("[data-bs-dismiss='modal']");
+  
+    // Show the modal when the button is clicked
+    btn.addEventListener("click", function () {
+      modal.classList.add("show");
+      modal.style.display = "block";
+      document.body.classList.add("modal-open");
+      var backdrop = document.createElement("div");
+      backdrop.className = "modal-backdrop fade show";
+      document.body.appendChild(backdrop);
+    });
+  
+    // Close the modal when any close button is clicked
+    closeModalBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        modal.classList.remove("show");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+        var backdrop = document.querySelector(".modal-backdrop");
+        if (backdrop) {
+          backdrop.parentNode.removeChild(backdrop);
+        }
+      });
+    });
+  
+    // Prevent the modal from closing when clicking outside of it or pressing Escape
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        modal.classList.add("modal-static");
+        setTimeout(function () {
+          modal.classList.remove("modal-static");
+        }, 180);
+      }
+    });
+  
+    // Prevent closing the modal when pressing Escape key
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        event.stopPropagation();
+      }
+    });
+  });
+  
 
 // หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง
 

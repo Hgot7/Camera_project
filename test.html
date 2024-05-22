@@ -1,89 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>User Experience Research Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Static Backdrop Modal with Transition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    nav {
-      background-color: #333333;
-      color: #ffffff;
-      padding: 10px;
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
     }
 
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      font-weight: bold;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      background-color: transparent;
-      color: #999999;
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
+      margin: 20px;
     }
 
-    .arrow-down {
-      margin-left: 5px;
+    .btn:focus {
+      outline: none;
     }
 
-    .dropdown-menu {
-      position: absolute;
-      background-color: #ffffff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
-      padding: 10px;
+    .modal {
       display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Black w/ opacity */
+      transition: opacity 0.3s ease;
+      opacity: 0;
     }
 
-    .dropdown:hover .dropdown-menu {
+    .modal.show {
       display: block;
+      opacity: 1;
     }
 
-    .buttons button {
-      background-color: #4caf50;
-      color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      margin-left: 10px;
-      border-radius: 4px;
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      /* 10% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      /* Could be more or less, depending on screen size */
+      border-radius: 5px;
+      transform: scale(1);
+      transition: transform 0.3s ease;
+      /* position: absolute;
+      top: 50%;
+      left: 50%; */
+
+    }
+
+    .modal-static .modal-content {
+      transform: scale(1.1);
+    }
+
+    .modal-header,
+    .modal-footer {
+      background-color: #f8f9fa;
+      padding: 10px;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .modal-footer {
+      border-top: 1px solid #e9ecef;
+      text-align: right;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    .add-menu-item {
-      background-color: #666666;
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <nav>
-    <div class="container">
-      <div class="logo">อาหาร</div>
-      <div class="dropdown">
-        <button class="dropdown-toggle">เลือกอาหาร <i class="arrow-down"></i></button>
-        <div class="dropdown-menu">
-          <!-- Add dropdown menu items here -->
-        </div>
+
+  <!-- Trigger button -->
+  <button class="btn" id="openModalBtn">Launch static backdrop modal</button>
+
+  <!-- The Modal -->
+  <div id="customModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Static Backdrop Modal</h2>
       </div>
-      <div class="buttons">
-        <button class="add-food">เพิ่มอาหาร</button>
-        <button class="add-menu-item">เพิ่มซื้ออาหารยืนในอาหาร</button>
+      <div class="modal-body">
+        <p>This is a static backdrop modal. You cannot close it by clicking outside or pressing Escape.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="closeModalBtn">Close</button>
       </div>
     </div>
-  </nav>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get the modal
+      var modal = document.getElementById("customModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("openModalBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // Get the button that closes the modal
+      var closeModalBtn = document.getElementById("closeModalBtn");
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+        modal.classList.add("show");
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.classList.remove("show");
+      }
+
+      // When the user clicks on the button in the footer, close the modal
+      closeModalBtn.onclick = function () {
+        modal.classList.remove("show");
+      }
+
+      // When the user clicks anywhere outside of the modal, add modal-static class to modal and remove it after 2 seconds
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.classList.add("modal-static");
+          setTimeout(function () {
+            modal.classList.remove("modal-static");
+          }, 180); // 2000 milliseconds = 2 seconds
+        }
+      }
+
+      // When the user presses the Escape key, do nothing
+      document.onkeydown = function (event) {
+        if (event.key === "Escape") {
+          event.stopPropagation();
+        }
+      }
+    });
+
+  </script>
+
 </body>
 
 </html>
