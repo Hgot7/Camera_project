@@ -197,24 +197,20 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Show the modal when the button is clicked
     btn.addEventListener("click", function () {
-      modal.classList.add("show");
       modal.style.display = "block";
-      document.body.classList.add("modal-open");
-      var backdrop = document.createElement("div");
-      backdrop.className = "modal-backdrop fade show";
-      document.body.appendChild(backdrop);
+      setTimeout(function () {
+        modal.classList.add("show");
+      }, 10);
+
     });
   
     // Close the modal when any close button is clicked
     closeModalBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
         modal.classList.remove("show");
-        modal.style.display = "none";
-        document.body.classList.remove("modal-open");
-        var backdrop = document.querySelector(".modal-backdrop");
-        if (backdrop) {
-          backdrop.parentNode.removeChild(backdrop);
-        }
+        setTimeout(function () {
+          modal.style.display = "none";
+        }, 150);
       });
     });
   
@@ -228,12 +224,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   
-    // Prevent closing the modal when pressing Escape key
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        event.stopPropagation();
-      }
-    });
   });
   
 

@@ -71,7 +71,7 @@
                                 <input type="text" class="form-control" placeholder="line token" name="line_token" autocomplete="off" required="">
                             </div>
                             <button type="submit" class="btn btn-success">บันทึก</button>
-                            <a type="button" href="../classroom.php" class="btn btn-secondary ">กลับ</a>
+                            <a type="button" href="../classroom.php" class="btn btn-secondary">กลับ</a>
                         </form>
 
                     </div>

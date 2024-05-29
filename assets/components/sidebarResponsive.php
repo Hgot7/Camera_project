@@ -41,9 +41,15 @@
                     </a>
                 </li>
                 <li class="menu-bar-link">
-                    <a href="#">
+                    <a href="../../subject.php">
                         <i class="bi bi-mortarboard-fill icon"></i>
                         <span class="text nav-text">Subject</span>
+                    </a>
+                </li>
+                <li class="menu-bar-link">
+                    <a href="../../queue.php">
+                        <i class="bi bi-sort-numeric-down icon"></i>
+                        <span class="text nav-text">Queue</span>
                     </a>
                 </li>
             </ul>

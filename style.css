@@ -23,6 +23,7 @@
   width: 7px;
   /* Adjust the width as desired */
 }
+
 /* =============================== horizontal scrollbar ========================  */
 /* Change the color of the horizontal scrollbar thumb */
 ::-webkit-scrollbar-thumb:horizontal {
@@ -87,8 +88,8 @@ body.dark {
   --sidebar-color: #3a3b3c;
   --toggle-color: #FFF;
   --tablerow-color: #24242491;
-  --tablehead-color: #ffffffcb;
-  --tablehead-text-color: #242424;
+  --tablehead-color: #d0d0d0d6;
+  --tablehead-text-color: #222222;
   --text-color: #CCC;
   --shadow-color: #242424;
 
@@ -1412,13 +1413,12 @@ select:focus {
   /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.5);
   /* Black w/ opacity */
-  transition: opacity 0.3s ease;
   opacity: 0;
 }
 
 .modal.fade {
   display: none;
-  transition: opacity 0.15s linear;
+  transition: opacity 0.15s ease;
 }
 
 .modal.show {
@@ -1426,8 +1426,10 @@ select:focus {
   opacity: 1;
 }
 
+/* position move down from top */
 .modal.show .modal-dialog {
   transform: translate(-50%, -50%) translateY(0);
+  transition: 0.1s ease;
 }
 
 /* Modal dialog */
@@ -1435,36 +1437,35 @@ select:focus {
   position: relative;
   top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%) translateY(-100%);
-  transition: transform 0.5s ease;
+  transform: translate(-50%, -50%) translateY(-70%);
+  transition: transform 0.3s ease;
 }
 
 /* Modal content */
 .modal-content {
   background-color: var(--sidebar-color);
-  margin: 10% 20px 0px 298px;
+  margin: 10% 190px 0px 468px;
   border-radius: 5px;
   transform: scale(1);
   transition: transform 0.3s ease;
 }
 
-.modal.show .modal-dialog {
-  transform: translate(-50%, -50%) translateY(0);
-}
+
 
 
 .modal-title {
   margin-bottom: 0;
   line-height: 1.5;
   color: var(--text-color);
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /* Modal body */
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 16px;
+  padding: 0px 16px 16px 16px;
   font-size: 20px;
 }
 
@@ -1474,7 +1475,7 @@ select:focus {
   align-items: flex-start;
   justify-content: space-between;
   /* border-bottom: 1px solid var(--text-color); */
-  padding: 1rem 1rem;
+  padding: 0px 16px 16px 16px;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
@@ -1485,7 +1486,7 @@ select:focus {
   align-items: center;
   justify-content: flex-start;
   text-align: right;
-  padding: 16px;
+  padding: 0px 16px 16px 16px;
   /* border-top: 1px solid var(--text-color); */
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
@@ -1528,7 +1529,8 @@ select:focus {
 
 .btn-close:hover::before,
 .btn-close:hover::after {
-  background-color: #f00;
+  background-color: #dc3545;
+  ;
   /* Change color on hover */
 }
 
@@ -1573,6 +1575,7 @@ select:focus {
   margin-bottom: 1rem;
   color: var(--text-color);
   padding: 10px 10px;
+  table-layout: fixed;
 }
 
 .table-thead {
@@ -1615,14 +1618,13 @@ select:focus {
 }
 
 /* /////////////////////////////////////////////////////////////// custom building page */
-.col.mb-2 {
+.col.mb-0 {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   margin-top: initial;
 }
-
-.col.mb-0 {
+.col.mb-2 {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -1650,8 +1652,6 @@ select:focus {
     text-decoration: none;
     white-space: normal;
   }
-
-
 }
 
 /* Use when the screen size is greater than or equal to 600px*/
@@ -1688,14 +1688,14 @@ select:focus {
   }
 }
 
+@media screen and (max-width: 1060px) {}
+
+/* Add media query for sidebar is row when the screen size small */
 @media screen and (max-width: 1060px) {
   .overlay {
     z-index: 1;
   }
-}
 
-/* Add media query for sidebar is row when the screen size small */
-@media screen and (max-width: 1060px) {
   .showsidebar i {
     display: block;
   }
@@ -1740,7 +1740,8 @@ select:focus {
 
   /* ======================================== */
   .modal-content {
-    margin: 10% 20px 0px 20px;
+    margin: 10% 30px 0px 30px;
+    width: auto;
   }
 
 }

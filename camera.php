@@ -106,7 +106,7 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-warning" href="./camera/edit_camera.php">ตั้งค่า</a>
-                                                <a class="btn btn-sm btn-danger" href="">ลบกล้อง</a>
+                                                <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                             </td>
                                         </tr>
                                         <tr class="table1-active">
@@ -118,7 +118,7 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-warning" href="">ตั้งค่า</a>
-                                                <a class="btn btn-sm btn-danger" href="">ลบกล้อง</a>
+                                                <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                             </td>
                                         </tr>
                                         <tr class="table1-active">
@@ -130,12 +130,12 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-warning" href="">ตั้งค่า</a>
-                                                <a class="btn btn-sm btn-danger" href="">ลบกล้อง</a>
+                                                <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-danger btn-width mt-2">ลบกล้องทั้งหมด</button>
+                                <button type="submit" class="btn btn-danger btn-width mt-2">ลบทั้งหมด</button>
                             </div>
                         </div>
                     </div>
