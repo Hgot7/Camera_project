@@ -25,7 +25,17 @@
     </div>
 
     <div class="container">
-        <h1>Camera</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>เพิ่มกล้องในอาคาร</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../camera.php">Camera</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">เพิ่มกล้องในอาคาร</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">

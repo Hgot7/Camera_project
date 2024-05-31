@@ -1094,6 +1094,57 @@ button.nav-link {
   background-color: var(--sidebar-color);
 }
 
+/* /////////////////////////////////////////////////////////////// Custom CSS for Code */
+code {
+  font-size: 14px;
+  color: #ff6666;
+  word-wrap: break-word;
+}
+
+/* /////////////////////////////////////////////////////////////// Custom CSS for breadcrumb */
+.breadcrumb {
+  background-color: var(--body-color);
+  font-size: 19px;
+  padding: 10px 0px;
+  border-radius: 5px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 10px;
+  width: auto;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E");
+  margin: 0 0.5rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  /* Ensure breadcrumb items are displayed inline */
+  align-items: center;
+  /* Vertically align items */
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  /* Link color */
+  text-decoration: none;
+  /* Remove underline from links */
+}
+
+.breadcrumb-item a:hover {
+  color: #0056b3;
+  /* Link color on hover */
+  text-decoration: underline;
+  /* Add underline on hover */
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+  /* Color for the active breadcrumb item */
+}
+
 /* /////////////////////////////////////////////////////////////// custom input-group */
 
 .input-group {
@@ -1258,6 +1309,7 @@ select:focus {
 .btn {
   display: inline-block;
   font-weight: 400;
+  font-family: 'Kanit', sans-serif;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -1465,7 +1517,7 @@ select:focus {
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 0px 16px 16px 16px;
+  padding: 20px 16px 20px 16px;
   font-size: 20px;
 }
 
@@ -1475,7 +1527,7 @@ select:focus {
   align-items: flex-start;
   justify-content: space-between;
   /* border-bottom: 1px solid var(--text-color); */
-  padding: 0px 16px 16px 16px;
+  padding: 0px 16px 0px 16px;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
@@ -1624,6 +1676,7 @@ select:focus {
   flex-direction: row;
   margin-top: initial;
 }
+
 .col.mb-2 {
   display: flex;
   justify-content: space-between;

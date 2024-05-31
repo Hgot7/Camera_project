@@ -33,55 +33,85 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>ข้อมูลชื่อวิชาในหมวดวิชา</P>
+                        <P>ข้อมูลหมวดวิชาในแผนก</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">หมวดวิชา</label>
+                        <label for="subject" class="form-label">หมวดวิชาในแผนก</label>
                         <div class="col mb-2">
-                            <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                <option value="null" selected="">เลือกหมวด</option>
-                                <option value="TC">TC - ?????????????????</option>
-                                <option value="EL">EL - ??????????????</option>
-                                <option value="ME">ME - ????????</option>
+                            <select class="form-select" name="subject" id="subject" aria-label="Floating label select example">
+                                <option value="null" selected="">เลือกแผนก</option>
+                                <option value="TC">พาณิชยกรรม</option>
+                                <option value="EL">วิศวกรรม</option>
+                                <option value="ME">เกษตรศาสตร์</option>
                                 <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
                             </select>
-                            <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
+                            <!-- <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
                                 <a href="./subject/subjectmanage.php" class="btn btn-primary">จัดการหมวดวิชา</a>
                                 <a href="./subject/add_subject.php" class="btn btn-success" style="margin-right:1px;">เพิ่มวิชา</a>
-                            </div>
+                            </div> -->
                         </div>
+
                         <div class="table-responsive">
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
-                                        <th scope="col">ชื่อวิชา</th>
+                                        <th scope="col">ชื่อหมวดวิชา</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="table1-active">
-                                        <td scope="row">ตกปลา</td>
+                                        <td scope="row">ช่างยนต์</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="./subject/edit_subject.php">ตั้งค่า</a>
+                                            <a href="./subject/subjectmanage.php" class="btn btn-primary">จัดการวิชา</a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-right: 1px !important;">
+                                                แก้ไข
+                                            </button>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">ตกปลา</td>
+                                        <td scope="row">ไฟฟ้า</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="./subject/edit_subject.php">ตั้งค่า</a>
+                                            <a href="./subject/subjectmanage.php" class="btn btn-primary">จัดการวิชา</a>
+                                            <a class="btn btn-sm btn-warning" href="./subject/edit_subject.php">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">ตกปลา</td>
+                                        <td scope="row">อิเล็กทรอนิกส์</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="./subject/edit_subject.php">ตั้งค่า</a>
+                                            <a href="./subject/subjectmanage.php" class="btn btn-primary">จัดการวิชา</a>
+                                            <a class="btn btn-sm btn-warning" href="./subject/edit_subject.php">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p class="modal-title" id="staticBackdropLabel">แก้ไขชื่อหมวดวิชา</p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="subject" class="form-label" style="font-weight:normal;">ตั้งชื่อหมวดวิชา</label>
+                                        <form action="subject/add_subject.php" method="post">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="ชื่อหมวดวิชา" name="subject_name" autocomplete="off" required="">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" style="margin-right: 5px;">บันทึก</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -25,7 +25,17 @@
     </div>
 
     <div class="container">
-        <h1>Classroom</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>Classroom</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../classroom.php">Classroom</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">เพิ่มชั้นเรียน</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -36,7 +46,7 @@
                         <P>เพิ่มชั้นเรียน</P>
                     </div>
                     <div class="card1-body">
-                    <label class="form-label" for="building">แผนก</label>
+                        <label class="form-label" for="building">แผนก</label>
                         <form action="classroom/add_classroom.php" method="post">
                             <!-- เพิ่ม form tag และกำหนด action ไปที่ไฟล์ process.php -->
                             <div class="form-floating mb-3">

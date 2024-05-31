@@ -1,183 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Static Backdrop Modal with Transition</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Dynamic Dropdown Options</title>
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f8f9fa;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 20px;
-    }
-
-    .btn:focus {
-      outline: none;
-    }
-
-    .modal {
+    .hidden {
       display: none;
-      /* Hidden by default */
-      position: fixed;
-      /* Stay in place */
-      z-index: 1;
-      /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%;
-      /* Full width */
-      height: 100%;
-      /* Full height */
-      overflow: auto;
-      /* Enable scroll if needed */
-      background-color: rgba(0, 0, 0, 0.5);
-      /* Black w/ opacity */
-      transition: opacity 0.3s ease;
-      opacity: 0;
     }
-
-    .modal.show {
+    .active {
       display: block;
-      opacity: 1;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      /* 10% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      /* Could be more or less, depending on screen size */
-      border-radius: 5px;
-      transform: scale(1);
-      transition: transform 0.3s ease;
-      /* position: absolute;
-      top: 50%;
-      left: 50%; */
-
-    }
-
-    .modal-static .modal-content {
-      transform: scale(1.1);
-    }
-
-    .modal-header,
-    .modal-footer {
-      background-color: #f8f9fa;
-      padding: 10px;
-    }
-
-    .modal-header {
-      border-bottom: 1px solid #e9ecef;
-    }
-
-    .modal-footer {
-      border-top: 1px solid #e9ecef;
-      text-align: right;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
     }
   </style>
 </head>
-
 <body>
+  <h1>Dynamic Dropdown Example</h1>
+  
+  <!-- First Dropdown -->
+  <label for="first-option">Choose an option:</label>
+  <select id="first-option">
+    <option value="" selected >Select an option</option>
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+  </select>
 
-  <!-- Trigger button -->
-  <button class="btn" id="openModalBtn">Launch static backdrop modal</button>
-
-  <!-- The Modal -->
-  <div id="customModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close">&times;</span>
-        <h2>Static Backdrop Modal</h2>
-      </div>
-      <div class="modal-body">
-        <p>This is a static backdrop modal. You cannot close it by clicking outside or pressing Escape.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" id="closeModalBtn">Close</button>
-      </div>
-    </div>
-
+  <!-- Second Dropdown (Initially Hidden) -->
+  <div id="second-option-container" class="hidden">
+    <label for="second-option">Choose another option:</label>
+    <select id="second-option">
+      <option value="" selected disabled>Select an option</option>
+      <option value="suboption1">Suboption 1</option>
+      <option value="suboption2">Suboption 2</option>
+    </select>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Get the modal
-      var modal = document.getElementById("customModal");
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("openModalBtn");
-
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-
-      // Get the button that closes the modal
-      var closeModalBtn = document.getElementById("closeModalBtn");
-
-      // When the user clicks the button, open the modal
-      btn.onclick = function () {
-        modal.classList.add("show");
-      }
-
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function () {
-        modal.classList.remove("show");
-      }
-
-      // When the user clicks on the button in the footer, close the modal
-      closeModalBtn.onclick = function () {
-        modal.classList.remove("show");
-      }
-
-      // When the user clicks anywhere outside of the modal, add modal-static class to modal and remove it after 2 seconds
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.classList.add("modal-static");
-          setTimeout(function () {
-            modal.classList.remove("modal-static");
-          }, 180); // 2000 milliseconds = 2 seconds
-        }
-      }
-
-      // When the user presses the Escape key, do nothing
-      document.onkeydown = function (event) {
-        if (event.key === "Escape") {
-          event.stopPropagation();
-        }
+    // JavaScript to handle the dynamic showing of the second dropdown
+    document.getElementById('first-option').addEventListener('change', function() {
+      const secondOptionContainer = document.getElementById('second-option-container');
+      if (this.value === 'option1') {
+        secondOptionContainer.classList.remove('hidden');
+        secondOptionContainer.classList.add('active');
+      } else {
+        secondOptionContainer.classList.remove('active');
+        secondOptionContainer.classList.add('hidden');
       }
     });
-
   </script>
-
 </body>
-
 </html>

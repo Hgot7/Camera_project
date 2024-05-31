@@ -25,7 +25,17 @@
     </div>
 
     <div class="container">
-        <h1>Classroom</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>Classroom</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../classroom.php">Classroom</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">จัดการแผนก</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -34,7 +44,7 @@
                 <div class="card1">
                     <div class="card1-header">
                         <div class="col mb-0">
-                            <p style="align-content: center;margin: 0px 0px 0px 0px;">แผนก</p>
+                            <p style="align-content: center;margin: 0px 0px 0px 0px;">จัดการแผนก</p>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
                                 <!-- <a href="./classroom/add_classroom.php" class="btn btn-primary" style="margin-right: 0 !important;">เพิ่มแผนก</a> -->
                                 <!-- Button trigger modal -->
@@ -47,10 +57,11 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <p class="modal-title" id="staticBackdropLabel">ตั้งชื่อแผนก</p>
+                                                <p class="modal-title" id="staticBackdropLabel">เพิ่มแผนก</p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
+                                            <label for="department" class="form-label" style="font-weight: normal;" >ตั้งชื่อแผนก</label>
                                                 <form action="classroom/add_department.php" method="post" onsubmit="return validateForm2();">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" placeholder="ชื่อแผนก" name="name" autocomplete="off" required="">
@@ -79,21 +90,21 @@
                                 </thead>
                                 <tbody>
                                     <tr class="table1-active">
-                                        <td scope="row">การบิน 1</td>
+                                        <td scope="row">อิเล็กทรอนิกส์</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">การบิน 1</td>
+                                        <td scope="row">อิเล็กทรอนิกส์</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">การบิน 1</td>
+                                        <td scope="row">อิเล็กทรอนิกส์</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
@@ -109,15 +120,6 @@
         </div>
     </div>
     </div>
-    </div>
-    <div class="container ">
-        <div class="card1">
-            <div class="card1-body">
-                <button type="submit" class="btn btn-primary">บันทึก</button>
-                <a type="button" href="../classroom.php" class="btn btn-secondary ">กลับ</a>
-            </div>
-        </div>
-
     </div>
 </body>
 

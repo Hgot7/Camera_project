@@ -25,7 +25,17 @@
     </div>
 
     <div class="container">
-        <h1>Subject</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>Subject</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../subject.php">Subject</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">จัดการวิชาในหมวดวิชา</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -34,12 +44,12 @@
                 <div class="card1">
                     <div class="card1-header">
                         <div class="col mb-0">
-                            <p style="align-content: center;margin: 0px 0px 0px 0px;">จัดการหมวดวิชา</p>
+                            <p style="align-content: center;margin: 0px 0px 0px 0px;">จัดการวิชาในหมวดวิชา ..</p>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
                                 <!-- <a href="./classroom/add_classroom.php" class="btn btn-primary" style="margin-right: 0 !important;">เพิ่มแผนก</a> -->
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-right: 1px !important;">
-                                    เพิ่มหมวดวิชา
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-right: 1px !important;">
+                                    เพิ่มวิชา
                                 </button>
 
                                 <!-- Modal -->
@@ -47,13 +57,14 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <p class="modal-title" id="staticBackdropLabel">ตั้งชื่อหมวดวิชา</p>
+                                                <p class="modal-title" id="staticBackdropLabel">เพิ่มวิชา</p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
+                                                <label for="subject" class="form-label" style="font-weight:normal;">ตั้งชื่อวิชา</label>
                                                 <form action="classroom/add_department.php" method="post" onsubmit="return validateForm2();">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="ชื่อหมวดวิชา" name="name" autocomplete="off" required="">
+                                                        <input type="text" class="form-control" placeholder="ชื่อวิชา" name="name" autocomplete="off" required="">
                                                     </div>
                                                 </form>
                                             </div>
@@ -72,29 +83,29 @@
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
-                                        <th scope="col">ชื่อหมวดวิชา</th>
+                                        <th scope="col">ชื่อวิชา</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="table1-active">
-                                        <td scope="row">วิชาประมง</td>
+                                        <td scope="row">ประมง</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                            <a class="btn btn-sm btn-warning" href="./setup_sub-subject.php">ตั้งค่า</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">วิชาประมง</td>
+                                        <td scope="row">ประมง</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                            <a class="btn btn-sm btn-warning" href="./setup_sub-subject.php">ตั้งค่า</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
-                                        <td scope="row">วิชาประมง</td>
+                                        <td scope="row">ประมง</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                            <a class="btn btn-sm btn-warning" href="./setup_sub-subject.php">ตั้งค่า</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
@@ -106,15 +117,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container ">
-        <div class="card1">
-            <div class="card1-body">
-                <button type="submit" class="btn btn-primary">บันทึก</button>
-                <a type="button" href="../subject.php" class="btn btn-secondary ">กลับ</a>
-            </div>
-        </div>
-
     </div>
 </body>
 

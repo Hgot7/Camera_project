@@ -25,7 +25,17 @@
     </div>
 
     <div class="container">
-        <h1>Building</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>เพิ่มห้องเรียนในอาคาร</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../building.php">Building</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">เพิ่มห้องเรียนในอาคาร</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">

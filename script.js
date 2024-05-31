@@ -98,15 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 // Active Menu Link based on Current URL Path in responsive-sidebar and sidebar
-const namepath = ['dashboard', 'building', 'camera', 'classroom', 'subject'];
-const currentPath = window.location.pathname;
+const namepath = ['dashboard', 'building', 'camera', 'classroom', 'subject', 'queue'];
+const currentPath = window.location.pathname.toLowerCase();
 
 const menuLinks = document.querySelectorAll('.menu-bar-link');
 
 let matchedIndex = -1;
 
 for (let i = 0; i < namepath.length; i++) {
-  const pathWithSlash = `/${namepath[i]}`;
+  const pathWithSlash = `/${namepath[i].toLowerCase()}`;
   if (currentPath.includes(pathWithSlash)) {
     matchedIndex = i;
     break; // เลือก index แรกที่ตรงและหยุดวนลูป
@@ -114,8 +114,8 @@ for (let i = 0; i < namepath.length; i++) {
 }
 
 menuLinks.forEach((link, index) => {
-  const linkPath = link.querySelector('a').getAttribute('href');
-  const pathWithSlash = `/${namepath[matchedIndex]}`;
+  const linkPath = link.querySelector('a').getAttribute('href').toLowerCase();
+  const pathWithSlash = `/${namepath[matchedIndex].toLowerCase()}`;
 
   if (linkPath.includes(pathWithSlash)) {
     link.classList.add('active');
@@ -123,6 +123,7 @@ menuLinks.forEach((link, index) => {
     link.classList.remove('active');
   }
 });
+
 
 });
 

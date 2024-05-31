@@ -25,7 +25,17 @@
     </div>
 
     <div class="container">
-        <h1>Building</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>จัดการอาคาร</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../building.php">Building</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">จัดการอาคาร</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -47,10 +57,11 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <p class="modal-title" id="staticBackdropLabel">ตั้งชื่ออาคาร</p>
+                                                <p class="modal-title" id="staticBackdropLabel">เพิ่มอาคาร</p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
+                                            <label for="building" class="form-label" style="font-weight:normal;">ตั้งชื่ออาคาร</label>
                                                 <form action="building/add_building.php" method="post">
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="name" autocomplete="off" required="">
@@ -83,21 +94,21 @@
                                         <td scope="row">VBL</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบแผนก</a>
+                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
                                         <td scope="row">VBL</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบแผนก</a>
+                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                     <tr class="table1-active">
                                         <td scope="row">VBL</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบแผนก</a>
+                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -110,15 +121,6 @@
         </div>
     </div>
     </div>
-    </div>
-    <div class="container ">
-        <div class="card1">
-            <div class="card1-body">
-                <button type="submit" class="btn btn-primary">บันทึก</button>
-                <a type="button" href="../building.php" class="btn btn-secondary ">กลับ</a>
-            </div>
-        </div>
-
     </div>
 </body>
 

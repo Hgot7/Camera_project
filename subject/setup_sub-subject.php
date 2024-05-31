@@ -25,7 +25,18 @@
     </div>
 
     <div class="container">
-        <h1>Subject</h1>
+        <div class="row">
+            <div class="col">
+                <!-- <h1>Subject</h1> -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../subject.php">Subject</a></li>
+                        <li class="breadcrumb-item active"><a href="../subject/subjectmanage.php">จัดการวิชาในหมวดวิชา</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">ตั้งค่าวิชา</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -33,39 +44,22 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>ตั้งค่าวิชา</P>
+                        <P>ตั้งค่าวิชา..หมวดวิชา..ในแผนก..</P>
                     </div>
                     <div class="card1-body">
 
                         <form action="queue/add_queue.php" method="post" onsubmit="return validateForm()">
                             <!-- เพิ่ม form tag และกำหนด action ไปที่ไฟล์ process.php -->
-
                             <div class="form-floating mb-3">
-                                <label for="group" class="form-label">หมวดวิชา</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="group" placeholder="group" value="วิชาประมง" readonly="">
-                                </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <label for="subject" class="form-label">ชื่อวิชา</label>
+                                <label for="subject" class="form-label">ชื่อวิชา</label><code> *แก้ไขชื่อวิชาได้</code>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="subject" id="subject" placeholder="subject" value="ตกปลา">
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <label for="department" class="form-label">แผนก</label>
-                                <select class="form-select" name="department" id="department" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกแผนก</option>
-                                    <option value="อุตสาหกรรม">อุตสาหกรรม</option>
-                                    <option value="พาณิชยกรรม">พาณิชยกรรม</option>
-                                    <option value="การประมง">การประมง</option>
-                                    <option value="การบิน">การบิน</option>
-                                </select>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <label for="classroom" class="form-label">ชั้นเรียน</label>
+                                <label for="classroom" class="form-label">ชื่อชั้นเรียนในแผนกนี้</label>
                                 <select class="form-select" name="classroom" id="classroom" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกชั้นเรียน  ถ้าแผนก != none ให้แสดงช่องนี้ js</option>
+                                    <option value="null" selected="">เลือกชั้นเรียน</option>
                                     <option value="12">ปวช 1 ห้อง 1 1/3</option>
                                 </select>
                             </div>
@@ -79,8 +73,18 @@
                                     <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">บันทึก</button>
-                            <a type="button" href="../subject.php" class="btn btn-secondary ">กลับ</a>
+                            <div class="form-floating mb-3">
+                                <label for="building" class="form-label">ห้องในอาคาร</label>
+                                <select class="form-select" name="building" id="building" aria-label="Floating label select example">
+                                    <option value="null" selected="">เลือกห้องในอาคาร</option>
+                                    <option value="TC">TC - ?????????????????</option>
+                                    <option value="EL">EL - ??????????????</option>
+                                    <option value="ME">ME - ????????</option>
+                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-danger">บันทึก</button>
+                            <a type="button" href="../subject/subjectmanage.php" class="btn btn-secondary ">กลับ</a>
                         </form>
                     </div>
                 </div>

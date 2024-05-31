@@ -32,7 +32,12 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>รายการคิวถ่ายรูป</P>
+                        <div class="col mb-0">
+                            <p style="align-content: center;margin: 0px 0px 0px 0px;">รายการคิวถ่ายรูป</p>
+                            <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
+                                <a href="./queue/add_queue.php" class="btn btn-success" style="margin-right:1px;">เพิ่มคิวถ่ายรูป</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card1-body">
                         <div class="table-responsive">
@@ -67,7 +72,7 @@
                                         <td>??????</td>
                                         <td>11</td>
                                         <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
+                                            <a class="btn btn-sm btn-warning" href="./queue/edit_queue.php">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
 

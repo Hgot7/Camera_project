@@ -42,13 +42,13 @@
 
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">แผนก</label>
+                        <label for="building" class="form-label">ชั้นเรียนในแผนก</label>
                         <div class="col mb-2">
                             <select class="form-select" name="building" id="building" aria-label="Floating label select example">
                                 <option value="null" selected="">เลือกแผนก</option>
-                                <option value="TC">TC - ?????????????????</option>
-                                <option value="EL">EL - ??????????????</option>
-                                <option value="ME">ME - ????????</option>
+                                <option value="TC">พาณิชยกรรม</option>
+                                <option value="EL">วิศวกรรม</option>
+                                <option value="ME">เกษตรศาสตร์</option>
                                 <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
                             </select>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
@@ -64,7 +64,7 @@
                                         <th scope="col">ระดับชั้น</th>
                                         <th scope="col">ชื่อห้อง</th>
                                         <th scope="col">LINE TOKEN</th>
-                                        <th scope="col">ลบชั้นเรียน</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,6 +73,7 @@
                                         <td>1 1/3</td>
                                         <td>Lorem ipsum dolor sit amet.</td>
                                         <td>
+                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
@@ -81,6 +82,7 @@
                                         <td>1 1/3</td>
                                         <td>Lorem ipsum dolor sit amet.</td>
                                         <td>
+                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
@@ -89,6 +91,7 @@
                                         <td>1 1/3</td>
                                         <td>Lorem ipsum dolor sit amet.</td>
                                         <td>
+                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
                                     </tr>
