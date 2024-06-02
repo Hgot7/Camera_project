@@ -48,7 +48,6 @@
                     <div class="card1-body">
                         <label for="building" class="form-label">อาคาร</label>
                         <form action="building/add_room.php" method="post" onsubmit="return validateForm2();">
-                            <!-- เพิ่ม form tag และกำหนด action ไปที่ไฟล์ process.php -->
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="building" id="" aria-label="Floating label select example">
                                     <option value="null" selected="">เลือกอาคาร</option>
@@ -58,11 +57,20 @@
                                     <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
                                 </select>
                             </div>
-                            <label for="building" class="form-label">ตั้งชื่อห้องเรียนในอาคาร</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="เลขห้อง เช่น 101" name="room_number" autocomplete="off" required="">
+                                <div class="input-group">
+                                    <label for="building" class="form-label">ตั้งชื่อห้องเรียนในอาคาร</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="ชื่อห้อง" name="room_name" autocomplete="off" required="">
+                                    </div>
+                                </div>
                                 <span class="input-group-text">-</span>
-                                <input type="text" class="form-control" placeholder="ชื่อห้อง" name="room_name" autocomplete="off" required="">
+                                <div class="input-group">
+                                    <label for="building" class="form-label">ตั้งหมายเลยห้องเรียนในอาคาร</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="เลขห้อง เช่น 101" name="room_number" autocomplete="off" required="">
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">บันทึก</button>
                             <a type="button" href="../building.php" class="btn btn-secondary ">กลับ</a>

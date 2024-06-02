@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+require_once '../class/building.php';
+$building = new Building($conn);
+// Retrieve all buildings
+$buildings = $building->getBuildings();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,32 +57,40 @@
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
                                 <!-- <a href="./classroom/add_classroom.php" class="btn btn-primary" style="margin-right: 0 !important;">เพิ่มแผนก</a> -->
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-right: 1px !important;">
-                                    เพิ่มอาคาร
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBuildingModal" style="margin-right: 1px !important;">
+                                    เพิ่มข้อมูลอาคาร
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="addBuildingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addBuildingModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <p class="modal-title" id="staticBackdropLabel">เพิ่มอาคาร</p>
+                                                <p class="modal-title" id="addBuildingModalLabel">เพิ่มอาคาร</p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            <label for="building" class="form-label" style="font-weight:normal;">ตั้งชื่ออาคาร</label>
-                                                <form action="building/add_building.php" method="post">
+
+                                                <form action="./add_building.php" method="post" style="display: flex;">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="name" autocomplete="off" required="">
-                                                        <span class="input-group-text">-</span>
-                                                        <input type="text" class="form-control" placeholder="ชื่ออาคาร" name="building_name" autocomplete="off" required="">
+                                                        <label for="building" class="form-label" style="font-weight:normal;">ตั้งชื่ออาคาร</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" placeholder="ชื่ออาคาร" name="building_fullname" autocomplete="off" required="">
+                                                        </div>
                                                     </div>
-                                                </form>
+                                                    <span class="input-group-text">-</span>
+                                                    <div class="input-group">
+                                                        <label for="building" class="form-label" style="font-weight:normal;">ตั้งชื่อย่ออาคาร</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" placeholder="ตัวย่ออาคาร เช่น EL" name="building_name" autocomplete="off" required="">
+                                                        </div>
+                                                    </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary" style="margin-right: 5px;">บันทึก</button>
+                                                <button type="submit" name="addbuilding" class="btn btn-primary" style="margin-right: 5px;">เพิ่มข้อมูล</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -84,43 +101,73 @@
                         <div class="table-responsive">
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
-                                    <tr>
-                                        <th scope="col">ชื่ออาคาร</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
+                                    <?php if (empty($buildings)) : ?>
+                                        <tr>
+                                            <th scope="col" class="text-center">No data</th>
+                                        </tr>
+                                    <?php else : ?>
+                                        <tr>
+                                            <th scope="col">ชื่ออาคาร</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    <?php endif; ?>
                                 </thead>
                                 <tbody>
-                                    <tr class="table1-active">
-                                        <td scope="row">VBL</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">VBL</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">VBL</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($buildings as $building) : ?>
+                                        <tr class="table1-active">
+                                            <td scope="row"><?php echo htmlspecialchars($building['building_fullname']); ?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editBuildingModal<?php echo $building['building_id']; ?>" style="margin-right: 1px !important;">
+                                                    แก้ไข
+                                                </button>
+                                                <a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete?');" href="delete_building.php?id=<?php echo $building['building_id']; ?>">ลบ</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
+
                             </table>
                         </div>
-                        </form>
+                        <?php foreach ($buildings as $building) : ?>
+                            <!-- Modal -->
+                            <div class="modal fade" id="editBuildingModal<?php echo $building['building_id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editBuildingModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="modal-title" id="editBuildingModalLabel">แก้ไขข้อมูลอาคาร</p>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form action="./edit_building.php" method="post" style="display: flex;">
+                                                <div class="input-group">
+                                                    <label for="building" class="form-label" style="font-weight:normal;">แก้ไขชื่ออาคาร</label>
+                                                    <div class="input-group">
+                                                        <input type="hidden" class="form-control" id="building_id" name="building_id" value="<?php echo $building['building_id']; ?>">
+                                                        <input type="text" class="form-control" id="building_fullname" name="building_fullname" value="<?php echo htmlspecialchars($building['building_fullname']); ?>" required>
+                                                    </div>
+                                                </div>
+                                                <span class="input-group-text">-</span>
+                                                <div class="input-group">
+                                                    <label for="building" class="form-label" style="font-weight:normal;">แก้ไขชื่อย่ออาคาร</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="building_name" name="building_name" value="<?php echo htmlspecialchars($building['building_name']); ?>" required>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="editbuilding" name="editbuilding" class="btn btn-danger" style="margin-right: 5px;">บันทึกการแก้ไข</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </body>
 

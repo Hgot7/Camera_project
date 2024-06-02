@@ -63,26 +63,7 @@
                                     <option value="12">ปวช 1 ห้อง 1 1/3</option>
                                 </select>
                             </div>
-                            <div class="form-floating mb-3">
-                                <label for="building" class="form-label">ชื่ออาคาร</label>
-                                <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกอาคาร</option>
-                                    <option value="TC">TC - ?????????????????</option>
-                                    <option value="EL">EL - ??????????????</option>
-                                    <option value="ME">ME - ????????</option>
-                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
-                                </select>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <label for="building" class="form-label">ห้องในอาคาร</label>
-                                <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกห้องในอาคาร</option>
-                                    <option value="TC">TC - ?????????????????</option>
-                                    <option value="EL">EL - ??????????????</option>
-                                    <option value="ME">ME - ????????</option>
-                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
-                                </select>
-                            </div>
+
                             <button type="submit" class="btn btn-danger">บันทึก</button>
                             <a type="button" href="../subject/subjectmanage.php" class="btn btn-secondary ">กลับ</a>
                         </form>

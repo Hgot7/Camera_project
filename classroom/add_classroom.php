@@ -76,6 +76,26 @@
                                 <input type="text" class="form-control" placeholder="ห้องเช่น 1 1/3 ห้องดอกไม้" name="class" autocomplete="off" required="">
 
                             </div>
+                            <div class="form-floating mb-3">
+                                <label for="building" class="form-label">ชื่ออาคาร</label>
+                                <select class="form-select" name="building" id="building" aria-label="Floating label select example">
+                                    <option value="null" selected="">เลือกอาคาร</option>
+                                    <option value="TC">TC - ?????????????????</option>
+                                    <option value="EL">EL - ??????????????</option>
+                                    <option value="ME">ME - ????????</option>
+                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <label for="building" class="form-label">ห้องในอาคาร</label>
+                                <select class="form-select" name="building" id="building" aria-label="Floating label select example">
+                                    <option value="null" selected="">เลือกห้องในอาคาร</option>
+                                    <option value="TC">TC - ?????????????????</option>
+                                    <option value="EL">EL - ??????????????</option>
+                                    <option value="ME">ME - ????????</option>
+                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                                </select>
+                            </div>
                             <label class="form-label" for="building">Line Token</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="line token" name="line_token" autocomplete="off" required="">

@@ -187,45 +187,54 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // show of Modal
 document.addEventListener("DOMContentLoaded", function () {
-    // Get the modal element
-    var modal = document.getElementById("staticBackdrop");
-  
-    // Get the button that opens the modal
-    var btn = document.querySelector("[data-bs-toggle='modal']");
-  
-    // Get the close buttons within the modal
-    var closeModalBtns = modal.querySelectorAll("[data-bs-dismiss='modal']");
-  
-    // Show the modal when the button is clicked
-    btn.addEventListener("click", function () {
-      modal.style.display = "block";
-      setTimeout(function () {
-        modal.classList.add("show");
-      }, 10);
+  // Function to initialize all modals
+  function initializeModals() {
+      // Select all modals and buttons
+      var modals = document.querySelectorAll(".modal");
+      var modalButtons = document.querySelectorAll("[data-bs-toggle='modal']");
 
-    });
-  
-    // Close the modal when any close button is clicked
-    closeModalBtns.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        modal.classList.remove("show");
-        setTimeout(function () {
-          modal.style.display = "none";
-        }, 150);
+      modalButtons.forEach(function (btn) {
+          // Get the target modal ID from the button's data-bs-target attribute
+          var targetModalId = btn.getAttribute("data-bs-target").substring(1);
+          console.log(targetModalId);
+          var modal = document.getElementById(targetModalId);
+
+          // Get the close buttons within the modal
+          var closeModalBtns = modal.querySelectorAll("[data-bs-dismiss='modal']");
+
+          // Show the modal when the button is clicked
+          btn.addEventListener("click", function () {
+              modal.style.display = "block";
+              setTimeout(function () {
+                  modal.classList.add("show");
+              }, 10);
+          });
+
+          // Close the modal when any close button is clicked
+          closeModalBtns.forEach(function (closeBtn) {
+              closeBtn.addEventListener("click", function () {
+                  modal.classList.remove("show");
+                  setTimeout(function () {
+                      modal.style.display = "none";
+                  }, 150);
+              });
+          });
+
+          // Prevent the modal from closing when clicking outside of it or pressing Escape
+          modal.addEventListener("click", function (event) {
+              if (event.target === modal) {
+                  modal.classList.add("modal-static");
+                  setTimeout(function () {
+                      modal.classList.remove("modal-static");
+                  }, 180);
+              }
+          });
       });
-    });
-  
-    // Prevent the modal from closing when clicking outside of it or pressing Escape
-    modal.addEventListener("click", function (event) {
-      if (event.target === modal) {
-        modal.classList.add("modal-static");
-        setTimeout(function () {
-          modal.classList.remove("modal-static");
-        }, 180);
-      }
-    });
-  
-  });
+  }
+  // Initialize all modals on the page
+  initializeModals();
+});
+
   
 
 // หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง

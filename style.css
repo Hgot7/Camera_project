@@ -6,7 +6,7 @@
 
 /* Change the color of the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--text-color);
+  background-color: var(--scrollbar-color);
   /* Specify the desired color for the scrollbar thumb */
   border-radius: 10px;
   /* Add rounded corners to the scrollbar thumb */
@@ -27,7 +27,7 @@
 /* =============================== horizontal scrollbar ========================  */
 /* Change the color of the horizontal scrollbar thumb */
 ::-webkit-scrollbar-thumb:horizontal {
-  background-color: var(--text-color);
+  background-color: var(--scrollbar-color);
   /* Specify the desired color for the scrollbar thumb */
   border-radius: 10px;
   /* Add rounded corners to the scrollbar thumb */
@@ -49,7 +49,9 @@ body {
   margin: initial;
   height: 100vh;
   background: var(--body-color);
+
   /* Colors */
+  --scrollbar-color: #b1b1b1;
   --body-color: #f6f5ff;
   --background-color: #d2d2d2;
   --primary-color: #eeeeee;
@@ -79,6 +81,7 @@ body {
 
 body.dark {
 
+  --scrollbar-color: #696969;
   --body-color: #242424;
   /* --background-color: #242526; */
   --background-color: #3a3b3c;
@@ -1155,9 +1158,13 @@ code {
   width: 100%;
 }
 
+.input-group.mb-3 {
+  flex-wrap: nowrap;
+}
+
 .input-group-text {
   display: flex;
-  align-items: center;
+  align-items: end;
   padding: 0.375rem 0.75rem;
   margin-bottom: 0;
   font-size: 1rem;
@@ -1446,6 +1453,63 @@ select:focus {
 }
 
 
+/* /////////////////////////////////////////////////////////////// custom aleart */
+.alert {
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .2s ease-in-out;
+}
+
+.alert-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+
+.alert-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert-light {
+  color: #818182;
+  background-color: #fefefe;
+  border-color: #fdfdfe;
+}
+
+.alert-dark {
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+}
+
 /* /////////////////////////////////////////////////////////////// custom modal */
 /* Custom CSS for modal */
 .modal {
@@ -1554,6 +1618,7 @@ select:focus {
 /* cross symbol */
 .btn-close {
   position: relative;
+  margin-top: 20px;
   width: 24px;
   height: 24px;
   background: none;
@@ -1705,6 +1770,14 @@ select:focus {
     text-decoration: none;
     white-space: normal;
   }
+
+  form {
+    flex-direction: column;
+  }
+
+  .input-group.mb-3 {
+    flex-wrap: wrap;
+  }
 }
 
 /* Use when the screen size is greater than or equal to 600px*/
@@ -1725,6 +1798,7 @@ select:focus {
   .row {
     display: block;
   }
+
 
 }
 
