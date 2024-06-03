@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+require_once '../class/building.php';
+require_once '../class/room.php';
+// create instance of class in class/building.php
+$building = new Building($conn);
+// Retrieve all buildings
+$buildings = $building->getBuildings();
+// create instance of class in class/room.php
+$room = new Room($conn);
+
+// add data room in building
+if (isset($_POST['addroom'])) {
+
+    $building_id = htmlspecialchars($_POST['building_id']);
+    $room_name = htmlspecialchars($_POST['room_name']);
+    $room_number = htmlspecialchars($_POST['room_number']);
+
+    if ($room->addRoom($building_id, $room_name, $room_number)) {
+        $_SESSION['success'] = "Success to add room";
+        header('location: ../building.php');
+        exit;
+    } else {
+        $_SESSION['error'] = "Failed to add room";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,15 +75,15 @@
                         <P>เพิ่มห้องเรียนในอาคาร</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">อาคาร</label>
-                        <form action="building/add_room.php" method="post" onsubmit="return validateForm2();">
+                        <label for="building" class="form-label">ชื่ออาคาร</label>
+                        <form action="add_room.php" method="post">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="building" id="" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกอาคาร</option>
-                                    <option value="TC">TC - ?????????????????</option>
-                                    <option value="EL">EL - ??????????????</option>
-                                    <option value="ME">ME - ????????</option>
-                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                                <select class="form-select" name="building_id" id="building_id" aria-label="Floating label select example">
+                                    <option value="" selected>เลือกอาคาร</option> <?php foreach ($buildings as $buildingOption) : ?>
+                                        <option value="<?php echo $buildingOption['building_id']; ?>">
+                                            <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="input-group mb-3">
@@ -72,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                            <button type="submit" name="addroom" class="btn btn-primary">บันทึก</button>
                             <a type="button" href="../building.php" class="btn btn-secondary ">กลับ</a>
                         </form>
                     </div>

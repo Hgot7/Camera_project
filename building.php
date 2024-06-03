@@ -1,3 +1,12 @@
+<?php
+session_start();
+require_once './class/building.php';
+// create instance of class in class/building.php
+$building = new Building($conn);
+// Retrieve all buildings
+$buildings = $building->getBuildings();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,14 +45,15 @@
                         <P>ข้อมูลห้องเรียนในอาคาร</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">ห้องเรียนในอาคาร</label>
+                        <label for="building" class="form-label">ชื่ออาคาร</label>
                         <div class="col mb-2">
                             <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                <option value="null" selected="">เลือกอาคาร</option>
-                                <option value="TC">TC - ?????????????????</option>
-                                <option value="EL">EL - ??????????????</option>
-                                <option value="ME">ME - ????????</option>
-                                <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                                <option value="" selected>เลือกอาคาร</option>
+                                <?php foreach ($buildings as $buildingOption) : ?>
+                                    <option value="<?php echo $buildingOption['building_id']; ?>">
+                                        <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
                                 <a href="./building/buildingmanage.php" class="btn btn-primary">จัดการอาคาร</a>
@@ -52,7 +62,7 @@
 
                         </div>
                         <div class="table-responsive">
-                            <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
+                            <table id="roomsTable" class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
                                         <th scope="col">เลขห้อง</th>
@@ -61,7 +71,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="table1-active">
+                                    <!-- <tr class="table1-active">
                                         <td scope="row">001</td>
                                         <td>อารามสงฆ์</td>
                                         <td>
@@ -84,7 +94,7 @@
                                             <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
                                             <a class="btn btn-sm btn-danger" href="">ลบ</a>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -95,8 +105,36 @@
     </div>
     </div>
     </div>
-    <div class="container ">
-    </div>
+    <script>
+        $(document).ready(function() {
+            $('#building').change(function() {
+                var buildingId = $(this).val();
+                $.ajax({
+                    url: './building/fetch_rooms.php',
+                    type: 'POST',
+                    data: {
+                        building_id: buildingId
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        var tableBody = $('#roomsTable tbody');
+                        tableBody.empty();
+                        response.forEach(function(room) {
+                            var row = '<tr class="table1-active">' +
+                                '<td>' + room.room_number + '</td>' +
+                                '<td>' + room.room_name + '</td>' +
+                                '<td>' +
+                                '<a class="btn btn-sm btn-warning" href="edit_room.php?id=' + room.room_id + '">แก้ไข</a>' +
+                                '<a class="btn btn-sm btn-danger" href="delete_room.php?id=' + room.room_id + '">ลบ</a>' +
+                                '</td>' +
+                                '</tr>';
+                            tableBody.append(row);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

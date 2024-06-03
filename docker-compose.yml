@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  php-apache-environment:
+    restart: always
+    deploy:
+      replicas: 2  # ปรับจำนวนตามต้องการ
+      # placement:
+      #   constraints:
+      #     - node.hostname != <ชื่อเครื่อง>
+    container_name: php-apache
+    image: php-camera_project
+    depends_on:
+      - db
+    ports:
+      - "8001:80"  # เปิดเผยพอร์ต 80 สำหรับแอปพลิเคชัน
+    volumes:
+      - .:/var/www/html/
+
+  db:
+    container_name: db
+    image: mysql
+    deploy:
+      replicas: 1
+      # placement:
+      #   constraints:
+      #     - node.hostname == <ชื่อเครื่อง>
+    restart: always
+    environment:  # แทนที่ตัวแทนด้วยค่าจริง
+      MYSQL_ROOT_PASSWORD: Admin@2024
+      MYSQL_DATABASE: camera_project
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Admin@2024
+    # ports:
+    #   - "9906:3306"  # เปิดเผยสำหรับการเข้าถึงโดยตรง (ถ้าจำเป็น)
+    volumes:
+      - db-data:/var/lib/mysql
+
+  phpmyadmin:  # พิจารณาใช้วิธีการเข้าถึงอื่นสำหรับการผลิต
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8002:80"  # เปิดเผยสำหรับการพัฒนาเท่านั้น
+    deploy:
+      replicas: 1
+      # placement:
+      #   constraints:
+      #     - node.hostname == <ชื่อเครื่อง>
+    restart: always
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+
+volumes:
+  db-data:

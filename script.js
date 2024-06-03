@@ -235,6 +235,28 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeModals();
 });
 
+// remove class alert
+document.addEventListener("DOMContentLoaded", function () {
+
+ // Function to fade out alert messages
+   var fadeOutAlerts = function () {
+    setTimeout(function () {
+        const alerts = document.querySelectorAll('.alert'); // Get all alert elements
+      if (alerts !== null) {
+        alerts.forEach(alert => {
+              alert.style.transition = 'opacity 0.5s ease-in-out'; // Set transition properties
+              alert.style.opacity = 0; // Gradually reduce opacity to 0
+      
+            // Remove the alert element after the transition is complete
+            alert.addEventListener('transitionend', () => {
+              alert.parentNode.removeChild(alert); // Remove from DOM
+            });
+          });
+      }
+    }, 5000);
+  };
+  fadeOutAlerts();
+});
   
 
 // หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง

@@ -1455,11 +1455,29 @@ select:focus {
 
 /* /////////////////////////////////////////////////////////////// custom aleart */
 .alert {
+  width: 100%;
+  margin: 0px 10px 0px 10px;
+  padding-left: 20px;
+  height: 50px;
+  align-content: center;
   color: inherit;
   background-color: inherit;
   border: 1px solid transparent;
   border-radius: .25rem;
   transition: all .2s ease-in-out;
+}
+
+/* โหมดกลางคืน (Dark mode) */
+body.dark .alert-success {
+  color: #75b798;
+  background-color: #051b11;
+  border-color: #0f5132;
+}
+
+body.dark .alert-danger {
+  color: #ea868f;
+  background-color: #2c0b0e;
+  border-color: #842029;
 }
 
 .alert-primary {

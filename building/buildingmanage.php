@@ -2,6 +2,7 @@
 session_start();
 
 require_once '../class/building.php';
+// create instance of class in class/building.php
 $building = new Building($conn);
 // Retrieve all buildings
 $buildings = $building->getBuildings();
@@ -45,6 +46,22 @@ $buildings = $building->getBuildings();
                 </nav>
             </div>
         </div>
+    </div>
+    <div class="container">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
     </div>
 
     <div class="container">
@@ -108,6 +125,7 @@ $buildings = $building->getBuildings();
                                     <?php else : ?>
                                         <tr>
                                             <th scope="col">ชื่ออาคาร</th>
+                                            <th scope="col">ชื่อย่ออาคาร</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     <?php endif; ?>
@@ -116,6 +134,7 @@ $buildings = $building->getBuildings();
                                     <?php foreach ($buildings as $building) : ?>
                                         <tr class="table1-active">
                                             <td scope="row"><?php echo htmlspecialchars($building['building_fullname']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($building['building_name']); ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editBuildingModal<?php echo $building['building_id']; ?>" style="margin-right: 1px !important;">
                                                     แก้ไข

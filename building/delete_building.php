@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../class/building.php';
+include_once('../class/building.php');
 $building = new Building($conn);
 // parametor
 $building_id = $_GET['id'];
