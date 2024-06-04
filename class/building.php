@@ -74,20 +74,6 @@ class Building
         }
     }
 
-
-    // Method to delete a building by ID
-    public function deleteBuilding($building_id)
-    {
-        $query = "DELETE FROM " . $this->table_name . " WHERE building_id = :building_id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':building_id', $building_id);
-
-        if ($stmt->execute()) {
-            return true; // Building deleted successfully
-        } else {
-            return false; // Error deleting building
-        }
-    }
     // Method to update building details
     public function updateBuilding($building_id, $building_fullname, $building_name)
     {
@@ -106,6 +92,20 @@ class Building
             return true; // Building updated successfully
         } else {
             return false; // Error updating building
+        }
+    }
+
+    // Method to delete a building by ID
+    public function deleteBuilding($building_id)
+    {
+        $query = "DELETE FROM " . $this->table_name . " WHERE building_id = :building_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':building_id', $building_id);
+
+        if ($stmt->execute()) {
+            return true; // Building deleted successfully
+        } else {
+            return false; // Error deleting building
         }
     }
 }

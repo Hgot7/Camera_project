@@ -3,26 +3,46 @@ session_start();
 
 require_once '../class/building.php';
 require_once '../class/room.php';
-// create instance of class in class/building.php
-$building = new Building($conn);
-// Retrieve all buildings
-$buildings = $building->getBuildings();
-// create instance of class in class/room.php
+
+
+// Create instances
 $room = new Room($conn);
+$building = new Building($conn);
 
-// add data room in building
-if (isset($_POST['addroom'])) {
+// Get all buildings for the dropdown
+$buildings = $building->getBuildings();
 
-    $building_id = htmlspecialchars($_POST['building_id']);
-    $room_name = htmlspecialchars($_POST['room_name']);
-    $room_number = htmlspecialchars($_POST['room_number']);
+if (isset($_GET['id'])) {
+    $room_id = $_GET['id'];
+    $roomDetails = $room->getRoomDetails($room_id);
+}
 
-    if ($room->addRoom($building_id, $room_name, $room_number)) {
-        $_SESSION['success'] = "Success to add room";
+if (isset($_POST['editroom'])) {
+
+    $building_id = $_POST['building_id'];
+    $room_name =  $_POST['room_name'];
+    $room_number = $_POST['room_number'];
+    $room_id = $_POST['room_id'];
+    $roombuilding_id = $_POST['roombuilding_id'];
+
+    echo $building_id;
+    echo $room_name;
+
+    if ($room->updateRoom($building_id, $room_name, $room_number, $room_id)) {
+        if ($building_id != $roombuilding_id) {
+            foreach ($buildings as $buildingOption) {
+                if ($buildingOption['building_id'] == $building_id) {
+                    $_SESSION['success'] = "Room : " . $room_name . " moved to new building " . htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']);
+                    break;
+                }
+            }
+        } else {
+            $_SESSION['success'] = "Success to update room : " . $room_name;
+        }
         header('location: ../building.php');
         exit;
     } else {
-        $_SESSION['error'] = "Failed to add room";
+        $_SESSION['error'] = "Failed to update room";
     }
 }
 ?>
@@ -75,12 +95,15 @@ if (isset($_POST['addroom'])) {
                         <P>แก้ไขห้องเรียนในอาคาร</P>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">ชื่ออาคาร</label>
+                        <label for="building" class="form-label">ชื่ออาคาร</label><code> *เลือกชื่ออาคารใหม่ได้</code>
                         <form action="./edit_room.php" method="post">
+                            <input type="hidden" name="room_id" value="<?php echo htmlspecialchars($roomDetails['room_id']); ?>">
+                            <input type="hidden" name="roombuilding_id" value="<?php echo htmlspecialchars($roomDetails['building_id']); ?>">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="building_id" id="building_id" aria-label="Floating label select example">
-                                    <option value="" selected>เลือกอาคาร</option> <?php foreach ($buildings as $buildingOption) : ?>
-                                        <option value="<?php echo $buildingOption['building_id']; ?>">
+                                <select class="form-select" name="building_id" id="building_id" aria-label="Floating label select example" required>
+                                    <option value="" selected>เลือกอาคาร</option>
+                                    <?php foreach ($buildings as $buildingOption) : ?>
+                                        <option value="<?php echo $buildingOption['building_id']; ?>" <?php echo $buildingOption['building_id'] == $roomDetails['building_id'] ? 'selected' : ''; ?>>
                                             <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -88,20 +111,20 @@ if (isset($_POST['addroom'])) {
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group">
-                                    <label for="building" class="form-label">ตั้งชื่อห้องเรียนในอาคาร</label>
+                                    <label for="room_name" class="form-label">ตั้งชื่อห้องเรียนในอาคาร</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="ชื่อห้อง" name="room_name" autocomplete="off" required="">
+                                        <input type="text" class="form-control" placeholder="ชื่อห้อง" name="room_name" value="<?php echo htmlspecialchars($roomDetails['room_name']); ?>" autocomplete="off" required="">
                                     </div>
                                 </div>
                                 <span class="input-group-text">-</span>
                                 <div class="input-group">
-                                    <label for="building" class="form-label">ตั้งหมายเลยห้องเรียนในอาคาร</label>
+                                    <label for="room_number" class="form-label">ตั้งหมายเลขห้องเรียนในอาคาร</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="เลขห้อง เช่น 101" name="room_number" autocomplete="off" required="">
+                                        <input type="text" class="form-control" placeholder="เลขห้อง เช่น 101" name="room_number" value="<?php echo htmlspecialchars($roomDetails['room_number']); ?>" autocomplete="off" required="">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" name="editroom" class="btn btn-primary">บันทึก</button>
+                            <button type="submit" name="editroom" class="btn btn-danger">บันทึก</button>
                             <a type="button" href="../building.php" class="btn btn-secondary ">กลับ</a>
                         </form>
                     </div>

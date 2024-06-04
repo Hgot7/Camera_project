@@ -17,8 +17,16 @@ if (isset($_POST['addroom'])) {
     $room_name = htmlspecialchars($_POST['room_name']);
     $room_number = htmlspecialchars($_POST['room_number']);
 
+    foreach ($buildings as $buildingOption) {
+        if ($building_id == $buildingOption['building_id']) {
+            $building_fullname = $buildingOption['building_fullname'];
+            break;
+        }
+    }
+
+
     if ($room->addRoom($building_id, $room_name, $room_number)) {
-        $_SESSION['success'] = "Success to add room";
+        $_SESSION['success'] = "Success to add room " . $room_name . " in Building " . $building_fullname;
         header('location: ../building.php');
         exit;
     } else {

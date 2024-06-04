@@ -9,7 +9,7 @@ if (isset($_POST['addbuilding'])) {
     $building_fullname = $_POST['building_fullname'];
 
     if ($building->addBuilding($building_name, $building_fullname)) {
-        $_SESSION['success'] = "Success to add building";
+        $_SESSION['success'] = "Success to add building ".$building_fullname;
         header('location: ./buildingmanage.php');
         exit;
     } else {

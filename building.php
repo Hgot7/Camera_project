@@ -36,6 +36,22 @@ $buildings = $building->getBuildings();
     <div class="container">
         <h1>Building</h1>
     </div>
+    <div class="container">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -65,36 +81,10 @@ $buildings = $building->getBuildings();
                             <table id="roomsTable" class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
-                                        <th scope="col">เลขห้อง</th>
-                                        <th scope="col">ชื่อห้อง</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" class="text-center">No data room in building</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr class="table1-active">
-                                        <td scope="row">001</td>
-                                        <td>อารามสงฆ์</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">001</td>
-                                        <td>อารามสงฆ์</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">001</td>
-                                        <td>อารามสงฆ์</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -107,31 +97,31 @@ $buildings = $building->getBuildings();
     </div>
     <script>
         $(document).ready(function() {
-            $('#building').change(function() {
-                var buildingId = $(this).val();
+            // Function to fetch rooms
+            function fetchRooms(buildingId) {
                 $.ajax({
                     url: './building/fetch_rooms.php',
                     type: 'POST',
                     data: {
                         building_id: buildingId
                     },
-                    dataType: 'json',
                     success: function(response) {
-                        var tableBody = $('#roomsTable tbody');
-                        tableBody.empty();
-                        response.forEach(function(room) {
-                            var row = '<tr class="table1-active">' +
-                                '<td>' + room.room_number + '</td>' +
-                                '<td>' + room.room_name + '</td>' +
-                                '<td>' +
-                                '<a class="btn btn-sm btn-warning" href="edit_room.php?id=' + room.room_id + '">แก้ไข</a>' +
-                                '<a class="btn btn-sm btn-danger" href="delete_room.php?id=' + room.room_id + '">ลบ</a>' +
-                                '</td>' +
-                                '</tr>';
-                            tableBody.append(row);
-                        });
+                        $('#roomsTable').html(response);
                     }
                 });
+            }
+            // Check if buildingId is in localStorage
+            var savedBuildingId = localStorage.getItem('buildingId');
+            if (savedBuildingId) {
+                $('#building').val(savedBuildingId);
+                fetchRooms(savedBuildingId);
+            }
+
+            // When the building dropdown changes
+            $('#building').change(function() {
+                var buildingId = $(this).val();
+                localStorage.setItem('buildingId', buildingId); // Save the selected buildingId to localStorage
+                fetchRooms(buildingId); // Fetch the rooms for the selected building
             });
         });
     </script>
