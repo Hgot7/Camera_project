@@ -81,7 +81,7 @@ class Room
         return $result;
     }
 
-     // Method to delete a room by ID
+    // Method to delete a room by ID
     public function deleteRoom($room_id)
     {
         // Prepare and execute the DELETE query

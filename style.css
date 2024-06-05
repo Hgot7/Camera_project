@@ -1453,6 +1453,69 @@ select:focus {
 }
 
 
+/* /////////////////////////////////////////////////////////////// custom form-check-input */
+
+.form-check-input {
+  z-index: -1;
+  width: 2em;
+  height: 1em;
+  font-size: 2em;
+  background-color: #e63745;
+  border-radius: 1em;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.form-check-input:checked {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+/* .form-check-input:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+} */
+
+.form-check-input:disabled {
+  pointer-events: none;
+  background-color: #28a745;
+}
+
+.form-check-label {
+  z-index: 1;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  /* Prevent wrapping */
+  position: absolute;
+  top: 38px;
+  left: 3px;
+  user-select: none;
+  color: #FFF;
+}
+
+/* CSS สำหรับการปรับแต่งเพิ่มเติม */
+.form-check-input::after {
+  content: '';
+  display: block;
+  width: 1em;
+  z-index: 2;
+  /* Increased z-index to ensure it's on top of labels */
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.15s ease-in-out;
+  transform: translateX(0.00em);
+}
+
+
+.form-check-input:checked::after {
+  transform: translateX(1em);
+}
+
 /* /////////////////////////////////////////////////////////////// custom aleart */
 .alert {
   width: 100%;
@@ -1710,7 +1773,7 @@ body.dark .alert-danger {
   margin-bottom: 1rem;
   color: var(--text-color);
   padding: 10px 10px;
-  table-layout: fixed;
+  /* table-layout: fixed; */
 }
 
 .table-thead {

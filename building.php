@@ -64,7 +64,7 @@ $buildings = $building->getBuildings();
                         <label for="building" class="form-label">ชื่ออาคาร</label>
                         <div class="col mb-2">
                             <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                <option value="" selected>เลือกอาคาร</option>
+                                <option value="0" selected>เลือกอาคาร</option>
                                 <?php foreach ($buildings as $buildingOption) : ?>
                                     <option value="<?php echo $buildingOption['building_id']; ?>">
                                         <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>
@@ -95,36 +95,37 @@ $buildings = $building->getBuildings();
     </div>
     </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            // Function to fetch rooms
-            function fetchRooms(buildingId) {
-                $.ajax({
-                    url: './building/fetch_rooms.php',
-                    type: 'POST',
-                    data: {
-                        building_id: buildingId
-                    },
-                    success: function(response) {
-                        $('#roomsTable').html(response);
-                    }
-                });
-            }
-            // Check if buildingId is in localStorage
-            var savedBuildingId = localStorage.getItem('buildingId');
-            if (savedBuildingId) {
-                $('#building').val(savedBuildingId);
-                fetchRooms(savedBuildingId);
-            }
 
-            // When the building dropdown changes
-            $('#building').change(function() {
-                var buildingId = $(this).val();
-                localStorage.setItem('buildingId', buildingId); // Save the selected buildingId to localStorage
-                fetchRooms(buildingId); // Fetch the rooms for the selected building
-            });
-        });
-    </script>
 </body>
+<script>
+    $(document).ready(function() {
+        // Function to fetch rooms
+        function fetchRooms(buildingId) {
+            $.ajax({
+                url: './building/fetch_rooms.php',
+                type: 'POST',
+                data: {
+                    building_id: buildingId
+                },
+                success: function(response) {
+                    $('#roomsTable').html(response);
+                }
+            });
+        }
+        // Check if buildingId is in localStorage
+        var savedBuildingId = localStorage.getItem('buildingId');
+        if (savedBuildingId) {
+            $('#building').val(savedBuildingId);
+            fetchRooms(savedBuildingId);
+        }
+
+        // When the building dropdown changes
+        $('#building').change(function() {
+            var buildingId = $(this).val();
+            localStorage.setItem('buildingId', buildingId); // Save the selected buildingId to localStorage
+            fetchRooms(buildingId); // Fetch the rooms for the selected building
+        });
+    });
+</script>
 
 </html>

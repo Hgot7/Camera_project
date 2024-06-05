@@ -1,51 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Dropdown Options</title>
+	<title>toggle switch</title>
   <style>
-    .hidden {
-      display: none;
+    h1 {
+      color: green;
     }
-    .active {
-      display: block;
+      
+    /* toggle in label designing */
+    .toggle {
+      position : relative ;
+      display : inline-block;
+      width : 100px;
+      height : 52px;
+      background-color: red;
+      border-radius: 30px;
+      border: 2px solid gray;
+    }
+      
+    /* After slide changes */
+    .toggle:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: gray;
+      top: 1px; 
+      left: 1px;
+      transition: all 0.5s;
+    }
+      
+    /* Toggle text */
+    p {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+    }
+      
+    /* Checkbox checked effect */
+    .checkbox:checked + .toggle::after {
+      left : 49px; 
+    }
+      
+    /* Checkbox checked toggle label bg color */
+    .checkbox:checked + .toggle {
+      background-color: green;
+    }
+      
+    /* Checkbox vanished */
+    .checkbox { 
+      display : none;
     }
   </style>
-</head>
-<body>
-  <h1>Dynamic Dropdown Example</h1>
   
-  <!-- First Dropdown -->
-  <label for="first-option">Choose an option:</label>
-  <select id="first-option">
-    <option value="" selected >Select an option</option>
-    <option value="option1">Option 1</option>
-    <option value="option2">Option 2</option>
-  </select>
+</head>
 
-  <!-- Second Dropdown (Initially Hidden) -->
-  <div id="second-option-container" class="hidden">
-    <label for="second-option">Choose another option:</label>
-    <select id="second-option">
-      <option value="" selected disabled>Select an option</option>
-      <option value="suboption1">Suboption 1</option>
-      <option value="suboption2">Suboption 2</option>
-    </select>
-  </div>
-
-  <script>
-    // JavaScript to handle the dynamic showing of the second dropdown
-    document.getElementById('first-option').addEventListener('change', function() {
-      const secondOptionContainer = document.getElementById('second-option-container');
-      if (this.value === 'option1') {
-        secondOptionContainer.classList.remove('hidden');
-        secondOptionContainer.classList.add('active');
-      } else {
-        secondOptionContainer.classList.remove('active');
-        secondOptionContainer.classList.add('hidden');
-      }
-    });
-  </script>
+<body>
+	<center>
+		<h1>GeeksforGeeks</h1>
+		<b>Toggle switch with HTML and CSS</b>
+		<br><br>
+	
+		<input type="checkbox"
+			id="switch"
+			class="checkbox" />
+				
+		<label for="switch"
+			class="toggle">
+			<p>
+				OFF  ON
+			</p>
+		</label>
+	</center>
 </body>
+
 </html>

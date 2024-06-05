@@ -1,3 +1,31 @@
+<?php
+session_start();
+require_once '../class/building.php';
+require_once '../class/camera.php';
+
+// create instance
+$building = new Building($conn);
+$camera = new Camera($conn);
+// Retrieve all buildings
+$buildings = $building->getBuildings();
+
+
+if (isset($_POST['addcamera'])) {
+    $building_id = $_POST['building_id'];
+    $room_id = $_POST['room_id'];
+    $camera_name = $_POST['camera_name'];
+    $status = isset($_POST['statuscamera']) ? 1 : 0; // Convert checkbox to 0 or 1
+
+    if ($camera->addCamera($building_id, $room_id, $camera_name, $status)) {
+        $_SESSION['success'] = "Success to add camera name " . $camera_name;
+        header('location: ../camera.php');
+        exit;
+    } else {
+        $_SESSION['error'] = "Failed to add camera";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,45 +71,50 @@
             <div class="col">
                 <div class="card1">
                     <div class="card1-header">
-                        <P>เพิ่มกล้องในอาคาร</P>
+                        <p>เพิ่มกล้องในอาคาร</p>
                     </div>
                     <div class="card1-body">
                         <label for="building" class="form-label">อาคาร</label>
-                        <form action="camera/add_camera.php" method="post" onsubmit="return validateForm2();">
-                            <!-- เพิ่ม form tag และกำหนด action ไปที่ไฟล์ process.php -->
+                        <form action="./add_camera.php" method="post">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="building" id="building2" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกอาคาร</option>
-                                    <option value="TC">TC - ?????????????????</option>
-                                    <option value="EL">EL - ??????????????</option>
-                                    <option value="ME">ME - ????????</option>
-                                    <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                                <select class="form-select" name="building_id" id="building" aria-label="Floating label select example">
+                                    <option value="0" selected>เลือกอาคาร</option>
+                                    <?php foreach ($buildings as $buildingOption) : ?>
+                                        <option value="<?php echo $buildingOption['building_id']; ?>">
+                                            <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-floating mb-3">
-                                <label for="room" class="form-label">ห้องเรียน</label>
-                                <select class="form-select" name="room" id="room2" aria-label="Floating label select example">
-                                    <option value="null" selected="">เลือกห้องเรียน</option>
+                                <label for="room" class="form-label">ห้องเรียนในอาคาร</label>
+                                <select class="form-select" name="room_id" id="room" aria-label="Floating label select example">
+                                    <option value="null" selected>เลือกห้องเรียน</option>
                                 </select>
-
                             </div>
-
                             <div class="form-floating mb-3">
                                 <label class="form-label">ชื่อกล้อง</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="camera_name" name="camera_name" autocomplete="off" required="" placeholder="ตั้งชื่อกล้อง">
+                                    <input type="text" class="form-control" id="camera_name" name="camera_name" autocomplete="off" required placeholder="ตั้งชื่อกล้อง">
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
+                            <!-- <div class="form-floating mb-3">
                                 <label for="room" class="form-label">สถานะกล้อง</label>
                                 <select class="form-select" name="room" id="room2" aria-label="Floating label select example">
                                     <option value="null" selected="">ปิด</option>
                                     <option value="1">เปิด</option>
                                 </select>
 
+                            </div> -->
+                            <div class="form-floating mb-3">
+                                <label for="room" class="form-label" style="white-space: nowrap;">สถานะกล้อง</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" name="statuscamera" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked style="margin: initial;">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">on off</label>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-success">บันทึก</button>
-                            <a type="button" href="../camera.php" class="btn btn-secondary ">กลับ</a>
+                            <button type="submit" name="addcamera" class="btn btn-success">บันทึก</button>
+                            <a type="button" href="../camera.php" class="btn btn-secondary">กลับ</a>
                         </form>
                     </div>
                 </div>
@@ -89,5 +122,27 @@
         </div>
     </div>
 </body>
+
+<script>
+    $(document).ready(function() {
+        $('#building').change(function() {
+            var buildingID = $(this).val();
+            if (buildingID != "null") {
+                $.ajax({
+                    url: 'fetch_rooms.php',
+                    type: 'post',
+                    data: {
+                        building_id: buildingID
+                    },
+                    success: function(response) {
+                        $('#room').html(response);
+                    }
+                });
+            } else {
+                $('#room').html('<option value="null" selected>เลือกห้องเรียน</option>');
+            }
+        });
+    });
+</script>
 
 </html>

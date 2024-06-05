@@ -1,3 +1,8 @@
     foreach ($roomDetails as $key => $value) {
         echo $key . ": " . $value . "<br>";
       }
+
+          foreach ($cameraDetail as $key => $value) {
+        // Use $key and $value to access the current element's key and value
+        echo $key . " => " . $value . "<br>";
+    }

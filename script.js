@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
 // หากคลิกที่ tab ให้เปลี่ยน tab-pane ที่เกี่ยวข้อง
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -171,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
 // Remove class show of spinner
 document.addEventListener("DOMContentLoaded", function () {
    // Spinner

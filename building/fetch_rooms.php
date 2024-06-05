@@ -4,9 +4,18 @@ $room = new Room($conn);
 
 if (isset($_POST['building_id'])) {
     $building_id = $_POST['building_id'];
-
-    $rooms = $room->getRoomsWithBuilding($building_id);
-    if ($rooms) {
+    if ($building_id =='0') {
+        // Handle the case where $building_id is empty (null or "")
+        $output = '<table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
+          <thead class="table-thead">
+            <tr>
+              <th scope="col" class="text-center">No data room in building</th>
+            </tr>
+          </thead>
+          <tbody>';
+        echo $output;
+    } else {
+        $rooms = $room->getRoomsWithBuilding($building_id);
         if (!empty($rooms)) {
             $output = '<table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                 <thead class="table-thead">
@@ -29,18 +38,14 @@ if (isset($_POST['building_id'])) {
             $output .= '</tbody></table>';
             echo $output;
         } else {
-            echo '<tr>
-                    <td colspan="3" class="text-center">No data</td>
-                  </tr>';
+            $output = '<table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
+            <thead class="table-thead">
+            <tr>
+            <th scope="col" class="text-center">No data room in this building</th>
+        </tr>
+            </thead>
+            <tbody>';
+            echo $output;
         }
-    } else {
-        $output = '<table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
-        <thead class="table-thead">
-        <tr>
-        <th scope="col" class="text-center">No data room in the building</th>
-    </tr>
-        </thead>
-        <tbody>';
-        echo $output;
     }
 }

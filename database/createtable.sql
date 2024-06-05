@@ -21,7 +21,6 @@ CREATE TABLE room (
 
 CREATE TABLE camera (
     camera_id INT NOT NULL AUTO_INCREMENT,
-    camera_number TEXT,
     camera_name TEXT,
     status INT,
     building_id INT,
