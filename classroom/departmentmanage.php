@@ -1,3 +1,16 @@
+<?php
+session_start();
+require_once '../class/department.php';
+
+// create instance
+$department = new Department($conn);
+// Get department 
+$departments = $department->getDepartments();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,6 +52,23 @@
     </div>
 
     <div class="container">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
+    </div>
+
+    <div class="container">
         <div class="row">
             <div class="col">
                 <div class="card1">
@@ -46,33 +76,31 @@
                         <div class="col mb-0">
                             <p style="align-content: center;margin: 0px 0px 0px 0px;">จัดการแผนก</p>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
-                                <!-- <a href="./classroom/add_classroom.php" class="btn btn-primary" style="margin-right: 0 !important;">เพิ่มแผนก</a> -->
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-right: 1px !important;">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartmentModal" style="margin-right: 1px !important;">
                                     เพิ่มแผนก
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="addDepartmentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addDepartmentModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <p class="modal-title" id="staticBackdropLabel">เพิ่มแผนก</p>
+                                                <p class="modal-title" id="addDepartmentModalLabel">เพิ่มแผนก</p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                            <label for="department" class="form-label" style="font-weight: normal;" >ตั้งชื่อแผนก</label>
-                                                <form action="classroom/add_department.php" method="post" onsubmit="return validateForm2();">
+                                                <label for="department" class="form-label" style="font-weight: normal;">ตั้งชื่อแผนก</label>
+                                                <form action="./add_department.php" method="post">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="ชื่อแผนก" name="name" autocomplete="off" required="">
+                                                        <input type="text" class="form-control" placeholder="ชื่อแผนก" name="department_name" autocomplete="off" required="">
                                                     </div>
-
-                                                </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary" style="margin-right: 5px;">บันทึก</button>
+                                                <button type="submit" name="addDepartment" class="btn btn-primary" style="margin-right: 5px;">บันทึก</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -89,31 +117,50 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="table1-active">
-                                        <td scope="row">อิเล็กทรอนิกส์</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">อิเล็กทรอนิกส์</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">อิเล็กทรอนิกส์</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($departments as $department) : ?>
+                                        <tr class="table1-active">
+                                            <td scope="row"><?php echo htmlspecialchars($department['department_name']); ?></td>
+                                            <td>
+                                                <!-- <a class="btn btn-sm btn-warning" href="edit_department.php?id=<?php echo $department['department_id']; ?>">แก้ไข</a> -->
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editDepartmentModal<?php echo $department['department_id']; ?>" style="margin-right: 1px !important;">
+                                                    แก้ไข
+                                                </button>
+                                                <a onclick="return confirm('Are you sure you want to delete?');" class="btn btn-sm btn-danger" href="delete_department.php?id=<?php echo $department['department_id']; ?>">ลบ</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-                        </form>
+                        <?php foreach ($departments as $department) : ?>
+                            <!-- Modal -->
+                            <div class="modal fade" id="editDepartmentModal<?php echo $department['department_id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="modal-title" id="editDepartmentModalLabel">แก้ไขข้อมูลแผนก</p>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form action="./edit_department.php" method="post" style="display: flex;">
+                                                <div class="input-group">
+                                                    <label for="department" class="form-label" style="font-weight:normal;">แก้ไขชื่อแผนก</label>
+                                                    <div class="input-group">
+                                                        <input type="hidden" class="form-control" id="department_id" name="department_id" value="<?php echo $department['department_id']; ?>">
+                                                        <input type="text" class="form-control" id="department_name" name="department_name" value="<?php echo htmlspecialchars($department['department_name']); ?>" required>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="editDepartment" name="editDepartment" class="btn btn-danger" style="margin-right: 5px;">บันทึกการแก้ไข</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

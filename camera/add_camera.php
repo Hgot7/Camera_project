@@ -74,8 +74,8 @@ if (isset($_POST['addcamera'])) {
                         <p>เพิ่มกล้องในอาคาร</p>
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">อาคาร</label>
-                        <form action="./add_camera.php" method="post">
+                        <label for="building" class="form-label">ชื่ออาคาร</label>
+                        <form action="./add_camera.php" method="post" onsubmit="return validateForm();">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="building_id" id="building" aria-label="Floating label select example">
                                     <option value="0" selected>เลือกอาคาร</option>
@@ -143,6 +143,23 @@ if (isset($_POST['addcamera'])) {
             }
         });
     });
+
+    function validateForm() {
+        var buildingSelect = document.getElementById("building");
+        var roomSelect = document.getElementById("room");
+
+        if (buildingSelect.value === "0") {
+            alert("กรุณาเลือกอาคารที่ถูกต้อง");
+            return false; // Prevent form submission
+        }
+
+        if (roomSelect.value === "null") {
+            alert("กรุณาเลือกห้องเรียนที่ถูกต้อง");
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
 </script>
 
 </html>

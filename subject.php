@@ -36,7 +36,7 @@
                         <P>ข้อมูลหมวดวิชาในแผนก</P>
                     </div>
                     <div class="card1-body">
-                        <label for="subject" class="form-label">หมวดวิชาในแผนก</label>
+                        <label for="subject" class="form-label">ชื่อแผนก</label>
                         <div class="col mb-2">
                             <select class="form-select" name="subject" id="subject" aria-label="Floating label select example">
                                 <option value="null" selected="">เลือกแผนก</option>

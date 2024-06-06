@@ -9,7 +9,7 @@ if (isset($_POST['building_id'])) {
         $output = '<table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
           <thead class="table-thead">
             <tr>
-              <th scope="col" class="text-center">No data room in building</th>
+              <th scope="col" class="text-center">Select a building first</th>
             </tr>
           </thead>
           <tbody>';

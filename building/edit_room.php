@@ -25,8 +25,6 @@ if (isset($_POST['editroom'])) {
     $room_id = $_POST['room_id'];
     $roombuilding_id = $_POST['roombuilding_id'];
 
-    echo $building_id;
-    echo $room_name;
 
     if ($room->updateRoom($building_id, $room_name, $room_number, $room_id)) {
         if ($building_id != $roombuilding_id) {
@@ -41,8 +39,6 @@ if (isset($_POST['editroom'])) {
         }
         header('location: ../building.php');
         exit;
-    } else {
-        $_SESSION['error'] = "Failed to update room";
     }
 }
 ?>

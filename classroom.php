@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once './class/department.php';
+
+// create instance
+$department = new Department($conn);
+// Get department 
+$departments = $department->getDepartments();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +41,23 @@
     </div>
 
     <div class="container">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
+    </div>
+
+    <div class="container">
         <div class="row">
             <div class="col">
                 <div class="card1">
@@ -42,14 +71,15 @@
 
                     </div>
                     <div class="card1-body">
-                        <label for="building" class="form-label">ชั้นเรียนในแผนก</label>
+                        <label for="building" class="form-label">ชื่อแผนก</label>
                         <div class="col mb-2">
-                            <select class="form-select" name="building" id="building" aria-label="Floating label select example">
-                                <option value="null" selected="">เลือกแผนก</option>
-                                <option value="TC">พาณิชยกรรม</option>
-                                <option value="EL">วิศวกรรม</option>
-                                <option value="ME">เกษตรศาสตร์</option>
-                                <option value="Hgot_Natchapon">Hgot_Natchapon - got</option>
+                            <select class="form-select" name="department_id" id="department" aria-label="Floating label select example">
+                                <option value="0" selected>เลือกแผนก</option>
+                                <?php foreach ($departments as $department) : ?>
+                                    <option value="<?php echo $department['department_id']; ?>">
+                                        <?php echo htmlspecialchars($department['department_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
                                 <!-- <a href="./classroom/add_department.php" class="btn btn-primary" style="margin-right: 1px !important;">จัดการแผนก</a> -->
@@ -58,44 +88,12 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
+                            <table id="departmentsTable" class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
-                                        <th scope="col">ระดับชั้น</th>
-                                        <th scope="col">ชื่อห้อง</th>
-                                        <th scope="col">LINE TOKEN</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" class="text-center">Select a department first</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="table1-active">
-                                        <td scope="row">ปวช 1</td>
-                                        <td>1 1/3</td>
-                                        <td>Lorem ipsum dolor sit amet.</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">ปวช 1</td>
-                                        <td>1 1/3</td>
-                                        <td>Lorem ipsum dolor sit amet.</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="table1-active">
-                                        <td scope="row">ปวช 1</td>
-                                        <td>1 1/3</td>
-                                        <td>Lorem ipsum dolor sit amet.</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -105,8 +103,37 @@
     </div>
     </div>
     </div>
-    <div class="container ">
-    </div>
 </body>
+
+<script>
+    $(document).ready(function() {
+        // Function to fetch rooms
+        function fetchRooms(departmentId) {
+            $.ajax({
+                url: './classroom/fetch_classroom.php',
+                type: 'POST',
+                data: {
+                    department_id: departmentId
+                },
+                success: function(response) {
+                    $('#departmentsTable').html(response);
+                }
+            });
+        }
+        // Check if departmentId is in localStorage
+        var savedDepartmentId = localStorage.getItem('departmentIdWithClassroom');
+        if (savedDepartmentId) {
+            $('#department').val(savedDepartmentId);
+            fetchRooms(savedDepartmentId);
+        }
+
+        // When the building dropdown changes
+        $('#department').change(function() {
+            var departmentId = $(this).val();
+            localStorage.setItem('departmentIdWithClassroom', departmentId); // Save the selected departmentId to localStorage
+            fetchRooms(departmentId); // Fetch the rooms for the selected building
+        });
+    });
+</script>
 
 </html>

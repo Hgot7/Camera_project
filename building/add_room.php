@@ -87,7 +87,8 @@ if (isset($_POST['addroom'])) {
                         <form action="add_room.php" method="post">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="building_id" id="building_id" aria-label="Floating label select example">
-                                    <option value="" selected>เลือกอาคาร</option> <?php foreach ($buildings as $buildingOption) : ?>
+                                    <option value="" selected>เลือกอาคาร</option>
+                                    <?php foreach ($buildings as $buildingOption) : ?>
                                         <option value="<?php echo $buildingOption['building_id']; ?>">
                                             <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>
                                         </option>

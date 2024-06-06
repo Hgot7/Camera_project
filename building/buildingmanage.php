@@ -72,7 +72,6 @@ $buildings = $building->getBuildings();
                         <div class="col mb-0">
                             <p style="align-content: center;margin: 0px 0px 0px 0px;">จัดการอาคาร</p>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
-                                <!-- <a href="./classroom/add_classroom.php" class="btn btn-primary" style="margin-right: 0 !important;">เพิ่มแผนก</a> -->
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBuildingModal" style="margin-right: 1px !important;">
                                     เพิ่มข้อมูลอาคาร
