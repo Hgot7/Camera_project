@@ -88,7 +88,7 @@ $departments = $department->getDepartments();
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table id="departmentsTable" class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
+                            <table id="classroomTable" class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
                                         <th scope="col" class="text-center">Select a department first</th>
@@ -108,7 +108,7 @@ $departments = $department->getDepartments();
 <script>
     $(document).ready(function() {
         // Function to fetch rooms
-        function fetchRooms(departmentId) {
+        function fetchClassrooms(departmentId) {
             $.ajax({
                 url: './classroom/fetch_classroom.php',
                 type: 'POST',
@@ -116,7 +116,7 @@ $departments = $department->getDepartments();
                     department_id: departmentId
                 },
                 success: function(response) {
-                    $('#departmentsTable').html(response);
+                    $('#classroomTable').html(response);
                 }
             });
         }
@@ -124,14 +124,14 @@ $departments = $department->getDepartments();
         var savedDepartmentId = localStorage.getItem('departmentIdWithClassroom');
         if (savedDepartmentId) {
             $('#department').val(savedDepartmentId);
-            fetchRooms(savedDepartmentId);
+            fetchClassrooms(savedDepartmentId);
         }
 
-        // When the building dropdown changes
+        // When the department dropdown changes
         $('#department').change(function() {
             var departmentId = $(this).val();
             localStorage.setItem('departmentIdWithClassroom', departmentId); // Save the selected departmentId to localStorage
-            fetchRooms(departmentId); // Fetch the rooms for the selected building
+            fetchClassrooms(departmentId); // Fetch the rooms for the selected building
         });
     });
 </script>

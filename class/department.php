@@ -25,7 +25,7 @@ class Department
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    
+
     // Method to add a new department
     public function addDepartment($department_name)
     {
@@ -65,6 +65,82 @@ class Department
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(':department_id', $department_id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // =========================================== call subject by department
+
+    // Method to get subjects by department_id
+    public function getSubjectsByDepartmentId($department_id)
+    {
+        $query = "SELECT * FROM " . $this->subject_table . " WHERE department_id = :department_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $stmt->bindParam(':department_id', $department_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    // Method to get a subject by subject_id
+    public function getSubjecBySujectId($subject_id)
+    {
+        $query = "SELECT * FROM " . $this->subject_table . " WHERE subject_id = :subject_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $stmt->bindParam(':subject_id', $subject_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    // Method to update a subject
+    public function updateSubject($subject_id, $subject_name)
+    {
+        $query = "UPDATE " . $this->subject_table . " SET subject_name = :subject_name WHERE subject_id = :subject_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameters
+        $stmt->bindParam(':subject_id', $subject_id);
+        $stmt->bindParam(':subject_name', $subject_name);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Method to add a subject
+    public function addSubject($department_id, $subject_name)
+    {
+        $query = "INSERT INTO " . $this->subject_table . " (department_id, subject_name) VALUES (:department_id, :subject_name)";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameters
+        $stmt->bindParam(':department_id', $department_id);
+        $stmt->bindParam(':subject_name', $subject_name);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // Method to delete a subject
+    public function deleteSubject($subject_id)
+    {
+        $query = "DELETE FROM " . $this->subject_table . " WHERE subject_id = :subject_id";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':subject_id', $subject_id);
         if ($stmt->execute()) {
             return true;
         } else {
