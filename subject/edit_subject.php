@@ -65,7 +65,7 @@ if (isset($_POST['editsubject'])) {
                         <P>แก้ไขข้อมูลหมวดวิชาในแผนก::</P>
                     </div>
                     <div class="card1-body">
-                        <label for="subject" class="form-label">ชื่อหมวดวิชา</label><code> *เลือกชื่อหมวดวิชาใหม่ได้</code>
+                        <label for="subject" class="form-label">ชื่อหมวดวิชา</label><code> *แก้ไขชื่อหมวดวิชาใหม่ได้</code>
                         <form action="./edit_subject.php" method="post">
                             <input type="hidden" name="subject_id" value="<?php echo htmlspecialchars($subject['subject_id']); ?>">
                             <input type="hidden" name="department_id" value="<?php echo htmlspecialchars($subject['department_id']); ?>">

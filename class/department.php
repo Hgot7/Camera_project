@@ -99,6 +99,20 @@ class Department
         return $result;
     }
 
+    // Method to get department_name and subject_name by subject_id
+    public function getDepartmentAndSubject($subject_id)
+    {
+        $query = "SELECT d.department_name, s.subject_name
+                          FROM " . $this->subject_table . " s
+                          JOIN " . $this->table_name . " d ON s.department_id = d.department_id
+                          WHERE s.subject_id = :subject_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':subject_id', $subject_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // Method to update a subject
     public function updateSubject($subject_id, $subject_name)
     {
@@ -147,4 +161,96 @@ class Department
             return false;
         }
     }
+
+    //  ======================================== call sub-subject by subject
+
+    // Method to get sub-subjects by subject_id
+    public function getSubSubjects($subject_id)
+    {
+        $query = "SELECT * FROM " . $this->sub_subject_table . " WHERE subject_id = :subject_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':subject_id', $subject_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    // Method to get a subject by subject_id
+    public function getSubSubjectBySubSubjectId($sub_subject_id)
+    {
+        $query = "SELECT * FROM " . $this->sub_subject_table . " WHERE sub_subject_id = :sub_subject_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $stmt->bindParam(':sub_subject_id', $sub_subject_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function addSubSubject($subject_id, $sub_subject_name)
+    {
+        $query = "INSERT INTO " . $this->sub_subject_table . " (subject_id, sub_subject_name) VALUES (:subject_id, :sub_subject_name)";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameters
+        $stmt->bindParam(':subject_id', $subject_id);
+        $stmt->bindParam(':sub_subject_name', $sub_subject_name);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function updateSubSubject($sub_subject_id, $sub_subject_name)
+    {
+        $query = "UPDATE " . $this->sub_subject_table . " SET sub_subject_name = :sub_subject_name WHERE sub_subject_id = :sub_subject_id";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':sub_subject_id', $sub_subject_id);
+        $stmt->bindParam(':sub_subject_name', $sub_subject_name);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // Method to delete a sub-subject by sub_subject_id
+    public function deleteSubSubject($sub_subject_id)
+    {
+        $query = "DELETE FROM " . $this->sub_subject_table . " WHERE sub_subject_id = :sub_subject_id";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':sub_subject_id', $sub_subject_id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // Method to get department_name and subject_name by subject_id
+    // public function getDepartmentAndSubjectBySubjectId($subject_id)
+    // {
+    //     $query = "
+    //            SELECT d.department_name, s.subject_name 
+    //            FROM " . $this->sub_subject_table . " ss
+    //            JOIN " . $this->subject_table . " s ON ss.subject_id = s.subject_id
+    //            JOIN " . $this->table_name . " d ON s.department_id = d.department_id
+    //            WHERE ss.subject_id = :subject_id
+    //        ";
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->bindParam(':subject_id', $subject_id);
+    //     $stmt->execute();
+    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     return $result;
+    // }
 }

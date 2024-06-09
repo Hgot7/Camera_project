@@ -61,7 +61,7 @@ if (isset($_POST['addsubject'])) {
                 <!-- <h1>เพิ่มห้องเรียนในSubject</h1> -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="../subject.php">subject</a></li>
+                        <li class="breadcrumb-item"><a href="../subject.php">Subject</a></li>
                         <li class="breadcrumb-item active" aria-current="page">เพิ่มห้องเรียนในSubject</li>
                     </ol>
                 </nav>

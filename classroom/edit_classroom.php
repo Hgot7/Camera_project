@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once '../connect.php';
 require_once '../class/building.php';
 require_once '../class/room.php';
 require_once '../class/classroom.php';
