@@ -73,6 +73,17 @@ class Department
     }
     // =========================================== call subject by department
 
+
+    // Method to get all subject 
+    public function getSubjects()
+    {
+        $query = "SELECT *  FROM " . $this->subject_table;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // Method to get subjects by department_id
     public function getSubjectsByDepartmentId($department_id)
     {
@@ -164,15 +175,26 @@ class Department
 
     //  ======================================== call sub-subject by subject
 
+
+    // Method to get all subject 
+    public function getSubSubjects()
+    {
+        $query = "SELECT *  FROM " . $this->sub_subject_table;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     // Method to get sub-subjects by subject_id
-    public function getSubSubjects($subject_id)
+    public function getSubSubjectsBySubjectId($subject_id)
     {
         $query = "SELECT * FROM " . $this->sub_subject_table . " WHERE subject_id = :subject_id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':subject_id', $subject_id);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Method to get a subject by subject_id

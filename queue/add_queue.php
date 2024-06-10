@@ -87,24 +87,35 @@
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <label for="day" class="form-label">วัน/เวลาถ่ายรูป</label>
                                 <div class="input-group">
-                                    <select class="form-select" name="day" id="day" aria-label="Floating label select example">
-                                        <option value="null" selected="">เลือกวัน</option>
-                                        <option value="1">จันทร์</option>
-                                        <option value="2">อังคาร</option>
-                                        <option value="3">พุธร</option>
-                                        <option value="4">พฤหัสบดี</option>
-                                        <option value="5">ศุกร์</option>
-                                    </select>
-                                    <span class="input-group-text">เลือกเวลาเริ่มถ่ายรูป</span>
-                                    <input type="time" id="appt" name="time_start" required="">
-
-                                    <span class="input-group-text">เลือกเวลาส่งถ่ายรูป</span>
-                                    <input type="time" id="appt" name="time_stop" required="">
+                                    <label for="day" class="form-label">วัน/เวลาถ่ายรูป</label>
+                                    <div class="input-group">
+                                        <select class="form-select" name="day" id="day" aria-label="Floating label select example">
+                                            <option value="null" selected="">เลือกวัน</option>
+                                            <option value="1">จันทร์</option>
+                                            <option value="2">อังคาร</option>
+                                            <option value="3">พุธร</option>
+                                            <option value="4">พฤหัสบดี</option>
+                                            <option value="5">ศุกร์</option>
+                                        </select>
+                                    </div>
                                 </div>
-
+                                <span class="input-group-text">-</span>
+                                <div class="input-group">
+                                    <label for="time" class="form-label">เลือกเวลาเริ่มถ่ายรูป</label>
+                                    <div class="input-group">
+                                        <input type="time" id="appt" name="time_start" required="">
+                                    </div>
+                                </div>
+                                <span class="input-group-text">-</span>
+                                <div class="input-group">
+                                    <label for="time" class="form-label">เลือกเวลาส่งถ่ายรูป</label>
+                                    <div class="input-group">
+                                        <input type="time" id="appt" name="time_stop" required="">
+                                    </div>
+                                </div>
                             </div>
+
                             <button type="submit" class="btn btn-success">บันทึก</button>
                             <a type="button" href="../queue.php" class="btn btn-secondary ">กลับ</a>
                         </form>
@@ -112,6 +123,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

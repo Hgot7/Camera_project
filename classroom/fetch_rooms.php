@@ -11,7 +11,7 @@ if (isset($_POST['building_id'])) {
         echo '<option value="null">โปรดเลือกอาคารก่อน</option>';
     } elseif ($rooms) {
         foreach ($rooms as $room) {
-            echo '<option value="' . htmlspecialchars($room['room_id']) . '">' . htmlspecialchars($room['room_name']) . '</option>';
+            echo '<option value="' . htmlspecialchars($room['room_id']) . '">' . htmlspecialchars($room['room_name']) . ' - ' . htmlspecialchars($room['room_number']) . '</option>';
         }
     } else {
         echo '<option value="null">ไม่มีห้องเรียนในอาคารนี้</option>';

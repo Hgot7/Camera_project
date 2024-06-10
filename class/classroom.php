@@ -25,9 +25,10 @@ class Classroom
     }
 
     // Method to add a new classroom
-    public function addClassroom($department_id, $level, $sublevel, $class, $building_id, $room_id, $line_token)
+    public function addClassroom($department_id, $level, $sublevel, $class, $building_id, $room_id, $subject_id, $sub_subject_id, $line_token)
     {
-        $query = "INSERT INTO " . $this->table_name . " (department_id, level, sub_level, class, building_id, room_id, line_token, time) VALUES (:department_id, :level, :sub_level, :class, :building_id, :room_id, :line_token, :time)";
+        $query = "INSERT INTO " . $this->table_name . " (department_id, level, sub_level, class, building_id, room_id,subject_id,sub_subject_id,
+        line_token, time) VALUES (:department_id, :level, :sub_level, :class, :building_id, :room_id,:subject_id,:sub_subject_id, :line_token, :time)";
         $stmt = $this->conn->prepare($query);
 
         // Bind parameters
@@ -37,6 +38,8 @@ class Classroom
         $stmt->bindParam(':class', $class);
         $stmt->bindParam(':building_id', $building_id);
         $stmt->bindParam(':room_id', $room_id);
+        $stmt->bindParam(':subject_id', $subject_id);
+        $stmt->bindParam(':sub_subject_id', $sub_subject_id);
         $stmt->bindParam(':line_token', $line_token);
         $stmt->bindParam(':time', $this->current_time);
 
@@ -73,10 +76,10 @@ class Classroom
     }
 
     // Method to update classroom
-    public function updateClassroom($classroom_id, $department_id, $level, $sublevel, $class, $building_id, $room_id, $line_token)
+    public function updateClassroom($classroom_id, $department_id, $subject_id, $sub_subject_id, $level, $sublevel, $class, $building_id, $room_id, $line_token)
     {
         $query = "UPDATE " . $this->table_name . " SET department_id = :department_id, level = :level, sub_level = :sub_level, class = :class, building_id = :building_id, room_id = :room_id, 
-        line_token = :line_token, time = :time WHERE classroom_id = :classroom_id";
+        line_token = :line_token, subject_id = :subject_id ,sub_subject_id = :sub_subject_id ,time = :time WHERE classroom_id = :classroom_id";
         $stmt = $this->conn->prepare($query);
 
         // Bind parameters
@@ -86,6 +89,8 @@ class Classroom
         $stmt->bindParam(':sub_level', $sublevel);
         $stmt->bindParam(':class', $class);
         $stmt->bindParam(':building_id', $building_id);
+        $stmt->bindParam(':subject_id', $subject_id);
+        $stmt->bindParam(':sub_subject_id', $sub_subject_id);
         $stmt->bindParam(':room_id', $room_id);
         $stmt->bindParam(':line_token', $line_token);
         $stmt->bindParam(':time', $this->current_time);

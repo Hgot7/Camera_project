@@ -10,7 +10,7 @@ $departments = $department->getDepartments();
 if (isset($_GET['id'])) {
     $subject_id = $_GET['id'];
     $_SESSION['subject_id'] = $subject_id;
-    $sub_subjects = $department->getSubSubjects($subject_id);
+    $sub_subjects = $department->getSubSubjectsBySubjectId($subject_id);
     $showResult = $department->getDepartmentAndSubject($subject_id);
 }
 
@@ -167,7 +167,7 @@ if (isset($_POST['editClassroom'])) {
                                             <td scope="row"><?php echo htmlspecialchars($sub_subject['sub_subject_name']) ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSub_subjectModal<?php echo $sub_subject['sub_subject_id']; ?>" style="margin-right: 1px !important;">
-                                                    ตั้งค่า
+                                                    แก้ไข
                                                 </button>
                                                 <a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete?');" href="./delete_sub-subject.php?id=<?php echo $sub_subject['sub_subject_id']; ?>">ลบ</a>
                                             </td>

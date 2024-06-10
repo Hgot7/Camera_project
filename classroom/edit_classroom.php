@@ -13,6 +13,7 @@ $department = new Department($conn);
 
 // Get department 
 $departments = $department->getDepartments();
+$departments = $department->getDepartments();
 // Retrieve all buildings
 $buildings = $building->getBuildings();
 
@@ -20,12 +21,16 @@ if (isset($_GET['id'])) {
     $classroom_id = $_GET['id'];
     $classroomDetails = $classroom->getClassroomById($classroom_id);
     $rooms = $room->getRoomsWithBuilding($classroomDetails['building_id']);
+    $subjects = $department->getSubjectsByDepartmentId($classroomDetails['department_id']);
+    $sub_subjects = $department->getSubSubjectsBySubjectId($classroomDetails['subject_id']);
 }
 
 if (isset($_POST['editClassroom'])) {
+    $OldDepartment_id = $_POST['OldDepartment_id'];
     $classroom_id = $_POST['classroom_id'];   // Assuming classroom_id is also sent in the form
     $department_id = $_POST['department_id'];
-    $OldDepartment_id = $_POST['OldDepartment_id'];
+    $subject_id = $_POST['subject_id'];
+    $sub_subject_id = $_POST['sub_subject_id'];
     $level = $_POST['level'];
     $sublevel = $_POST['sublevel'];
     $class = $_POST['class'];
@@ -33,7 +38,7 @@ if (isset($_POST['editClassroom'])) {
     $room_id = $_POST['room_id'];
     $line_token = $_POST['line_token'];
 
-    if ($classroom->updateClassroom($classroom_id, $department_id, $level, $sublevel, $class, $building_id, $room_id, $line_token)) {
+    if ($classroom->updateClassroom($classroom_id, $department_id, $subject_id, $sub_subject_id, $level, $sublevel, $class, $building_id, $room_id, $line_token)) {
 
         if ($OldDepartment_id != $department_id) {
             foreach ($departments as $department) {
@@ -43,7 +48,7 @@ if (isset($_POST['editClassroom'])) {
                 }
             }
         } else {
-            $_SESSION['success'] = "Classroom " . $class . "updated successfully!";
+            $_SESSION['success'] = "Classroom " . $class . " updated successfully!";
         }
         header('location: ../classroom.php');
         exit;
@@ -120,6 +125,34 @@ if (isset($_POST['editClassroom'])) {
                                             <?php echo htmlspecialchars($department['department_name']); ?> </option>
                                     <?php endforeach; ?>
                                 </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group">
+                                    <label class="form-label" for="subject">ชื่อหมวดวิชา</label>
+                                    <div class="input-group">
+                                        <select class="form-select" name="subject_id" id="subject" aria-label="Floating label select example" required>
+                                            <option value="null" <?php echo empty($classroomDetails['subject_id']) ? 'selected' : ''; ?>>เลือกหมวดวิชา</option>
+                                            <?php foreach ($subjects as $subject) : ?>
+                                                <option value="<?php echo $subject['subject_id']; ?>" <?php echo $subject['subject_id'] == $classroomDetails['subject_id'] ? 'selected' : ''; ?>>
+                                                    <?php echo htmlspecialchars($subject['subject_name']); ?> </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="input-group-text">-</span>
+                                <div class="input-group">
+                                    <label for="sub_subject_id" class="form-label">ชื่อวิชา</label>
+                                    <div class="input-group">
+                                        <select class="form-select" name="sub_subject_id" id="sub_subject_id" aria-label="Floating label select example">
+                                            <option value="null" <?php echo empty($classroomDetails['sub_subject_id']) ? 'selected' : ''; ?>>เลือกวิชา</option>
+                                            <?php foreach ($sub_subjects as $sub_subject) : ?>
+                                                <option value="<?php echo $sub_subject['sub_subject_id']; ?>" <?php echo $sub_subject['sub_subject_id'] == $classroomDetails['sub_subject_id'] ? 'selected' : ''; ?>>
+                                                    <?php echo htmlspecialchars($sub_subject['sub_subject_name']); ?> </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="input-group mb-3">
@@ -215,15 +248,89 @@ if (isset($_POST['editClassroom'])) {
         });
     });
 
+    $(document).ready(function() {
+        $('#department').change(function() {
+            var departmentID = $(this).val();
+            if (departmentID != "null") {
+                $.ajax({
+                    url: 'fetch_subject.php',
+                    type: 'post',
+                    data: {
+                        department_id: departmentID
+                    },
+                    success: function(response) {
+                        $('#subject').html(response);
+                    }
+                });
+            } else {
+                $('#suject').html('<option value="null" selected>เลือกแผนกก่อน</option>');
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#department').change(function() {
+            var departmentID = $(this).val();
+            if (departmentID != "null") {
+                $.ajax({
+                    url: 'fetch_subject.php',
+                    type: 'post',
+                    data: {
+                        department_id: departmentID
+                    },
+                    success: function(response) {
+                        $('#subject').html(response);
+                        $('#sub_subject_id').html('<option value="null" selected>เลือกหมวดวิชาก่อน</option>');
+                    }
+                });
+            } else {
+                $('#subject').html('<option value="null" selected>เลือกแผนกก่อน</option>');
+                $('#sub_subject_id').html('<option value="null" selected>เลือกหมวดวิชาก่อน</option>');
+            }
+        });
+
+        $('#subject').change(function() {
+            var subjectID = $(this).val();
+            if (subjectID != "null") {
+                $.ajax({
+                    url: 'fetch_sub_subject.php', // Use a different script for fetching sub-subjects
+                    type: 'post',
+                    data: {
+                        subject_id: subjectID
+                    },
+                    success: function(response) {
+                        $('#sub_subject_id').html(response);
+                    }
+                });
+            } else {
+                $('#sub_subject_id').html('<option value="null" selected>เลือกหมวดวิชาก่อน</option>');
+            }
+        });
+    });
+
+
     function validateForm() {
+        var departmentSelect = document.getElementById("department");
+        var subjectSelect = document.getElementById("subject");
+        var subSubjectSelect = document.getElementById("sub_subject_id");
         var buildingSelect = document.getElementById("building");
         var roomSelect = document.getElementById("room");
-        var departmentSelect = document.getElementById("department");
 
         if (departmentSelect.value === "null") {
             alert("กรุณาเลือกแผนกที่ถูกต้อง");
             return false; // Prevent form submission
         }
+
+        if (subjectSelect.value === "null") {
+            alert("กรุณาเลือกหมวดวิชาที่ถูกต้อง");
+            return false; // Prevent form submission
+        }
+
+        if (subSubjectSelect.value === "null") {
+            alert("กรุณาเลือกวิชาที่ถูกต้อง");
+            return false; // Prevent form submission
+        }
+
         if (buildingSelect.value === "0") {
             alert("กรุณาเลือกอาคารที่ถูกต้อง");
             return false; // Prevent form submission

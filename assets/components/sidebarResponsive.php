@@ -35,15 +35,15 @@
                     </a>
                 </li>
                 <li class="menu-bar-link">
-                    <a href="../../classroom.php">
-                        <i class="bi bi-box-seam icon"></i>
-                        <span class="text nav-text">Classroom</span>
-                    </a>
-                </li>
-                <li class="menu-bar-link">
                     <a href="../../subject.php">
                         <i class="bi bi-mortarboard-fill icon"></i>
                         <span class="text nav-text">Subject</span>
+                    </a>
+                </li>
+                <li class="menu-bar-link">
+                    <a href="../../classroom.php">
+                        <i class="bi bi-box-seam icon"></i>
+                        <span class="text nav-text">Classroom</span>
                     </a>
                 </li>
                 <li class="menu-bar-link">
