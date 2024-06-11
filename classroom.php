@@ -64,9 +64,6 @@ $departments = $department->getDepartments();
                     <div class="card1-header">
                         <div class="col mb-0">
                             <p style="align-content: center;margin: 10px 0px 0px 0px;">ข้อมูลชั้นเรียนในแผนก</p>
-                            <!-- <div class="form-floating" style="display:flex;flex-direction:row;margin-top:10px">
-                                <a href="./classroom/add_classroom.php" class="btn btn-success" style="margin-right: 0 !important;">เพิ่มชั้นเรียน</a>
-                            </div> -->
                         </div>
 
                     </div>
@@ -83,8 +80,8 @@ $departments = $department->getDepartments();
                             </select>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
                                 <!-- <a href="./classroom/add_department.php" class="btn btn-primary" style="margin-right: 1px !important;">จัดการแผนก</a> -->
-                                <a href="./classroom/departmentmanage.php" class="btn btn-primary">จัดการแผนก</a>
-                                <a href="./classroom/add_classroom.php" class="btn btn-success" style="margin-right: 1px;">เพิ่มชั้นเรียน</a>
+
+                                <a href="./classroom/add_classroom.php" class="btn btn-success" style="margin-right: 1px !important;">เพิ่มชั้นเรียน</a>
                             </div>
                         </div>
                         <div class="table-responsive">

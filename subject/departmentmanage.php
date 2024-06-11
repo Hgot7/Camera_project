@@ -40,10 +40,10 @@ $departments = $department->getDepartments();
     <div class="container">
         <div class="row">
             <div class="col">
-                <!-- <h1>Classroom</h1> -->
+                <!-- <h1>subject</h1> -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="../classroom.php">Classroom</a></li>
+                        <li class="breadcrumb-item"><a href="../subject.php">Subject</a></li>
                         <li class="breadcrumb-item active" aria-current="page">จัดการแผนก</li>
                     </ol>
                 </nav>

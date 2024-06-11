@@ -63,7 +63,7 @@ $buildings = $building->getBuildings();
                     <div class="card1-body">
                         <label for="building" class="form-label">ชื่ออาคาร</label>
                         <div class="col mb-2">
-                            <select class="form-select" name="building" id="building" aria-label="Floating label select example">
+                            <select class="form-select" name="building_id" id="building" aria-label="Floating label select example">
                                 <option value="0" selected>เลือกอาคาร</option>
                                 <?php foreach ($buildings as $buildingOption) : ?>
                                     <option value="<?php echo $buildingOption['building_id']; ?>">

@@ -25,6 +25,18 @@ class Department
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    // Method to get a classroom by department_id
+    public function getDepartmenById($department_id)
+    {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE department_id = :department_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $stmt->bindParam(':department_id', $department_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     // Method to add a new department
     public function addDepartment($department_name)

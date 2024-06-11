@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once '../connect.php';
 require_once '../class/department.php';
 
 // Create instance
@@ -15,5 +14,7 @@ if (isset($_GET['id'])) {
         exit;
     } else {
         $_SESSION['error'] = "Failed to delete department";
+        header('Location: ./departmentmanage.php');
+        exit;
     }
 }

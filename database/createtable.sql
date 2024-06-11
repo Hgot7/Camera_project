@@ -1,4 +1,5 @@
 CREATE DATABASE camera_project;
+
 USE camera_project;
 
 CREATE TABLE building (
@@ -73,7 +74,6 @@ CREATE TABLE classroom (
     sub_subject_id INT,
     building_id INT,
     room_id INT,
-    camera_id INT,
     line_token TEXT,
     time TIMESTAMP,
     PRIMARY KEY (classroom_id),
@@ -91,7 +91,13 @@ CREATE TABLE queue_setup (
     time_start TIME,
     time_stop TIME,
     classroom_id INT,
+    building_id INT,
+    room_id INT,
+    camera_id INT,
     time TIMESTAMP,
     PRIMARY KEY (queue_id),
-    FOREIGN KEY (classroom_id) REFERENCES classroom(classroom_id)
+    FOREIGN KEY (classroom_id) REFERENCES classroom(classroom_id),
+    FOREIGN KEY (building_id) REFERENCES building(building_id),
+    FOREIGN KEY (room_id) REFERENCES room(room_id),
+    FOREIGN KEY (camera_id) REFERENCES camera(camera_id)
 );

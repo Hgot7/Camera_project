@@ -1148,6 +1148,34 @@ code {
   /* Color for the active breadcrumb item */
 }
 
+/* /////////////////////////////////////////////////////////////// custom input time */
+/* เปลี่ยนสี icon clock ใน input time ให้เป็นสีดำเมื่อมีคลาส body.dark */
+body.dark input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* กำหนดสไตล์สำหรับ input time */
+input[type="time"] {
+  width: 100%;
+  letter-spacing: 3px;
+  /* ปรับระยะห่าง */
+  padding: 4px 12px;
+  border: 1px solid var(--body-color);
+  border-radius: 4px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 16px;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+/* สไตล์เมื่อ input time ได้รับโฟกัส */
+input[type="time"]:focus {
+  outline: none;
+  border-color: #6c63ff;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
 /* /////////////////////////////////////////////////////////////// custom input-group */
 
 .input-group {
@@ -1856,9 +1884,6 @@ body.dark .alert-danger {
     flex-direction: column;
   }
 
-  .input-group.mb-3 {
-    flex-wrap: wrap;
-  }
 }
 
 /* Use when the screen size is greater than or equal to 600px*/
@@ -1878,6 +1903,14 @@ body.dark .alert-danger {
 
   .row {
     display: block;
+  }
+
+  .input-group.mb-3 {
+    flex-wrap: wrap;
+  }
+
+  span.input-group-text {
+    opacity: 0;
   }
 
 

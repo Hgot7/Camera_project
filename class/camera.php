@@ -23,6 +23,78 @@ class Camera
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    // Method to get detailed camera information
+    public function getCamerasByStatus($status)
+    {
+        $query = "
+        SELECT 
+        c.camera_id,
+        c.camera_name,
+        b.building_fullname,
+        b.building_name,
+                  r.room_name,
+                  r.room_number,
+                  c.status
+                  FROM 
+                  " . $this->table_name . " c
+                  JOIN 
+                  building b ON c.building_id = b.building_id
+                  JOIN 
+                  room r ON c.room_id = r.room_id
+                  WHERE c.status = :status ";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    // Fetch cameras based on building_id and room_id
+    public function getCamerasByBuildingAndRoom($building_id, $room_id)
+    {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE building_id = :building_id AND room_id = :room_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':building_id', $building_id, PDO::PARAM_INT);
+        $stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // Method to get detailed camera information
+    public function getCamerasById($camera_id)
+    {
+        $query = "
+                      SELECT 
+                      c.camera_id,
+                      c.camera_name,
+                      c.building_id,
+                      b.building_fullname,
+                      b.building_name,
+                      r.room_id,
+                      r.room_name,
+                      r.room_number,
+                      c.status
+                      FROM 
+                      " . $this->table_name . " c
+                      JOIN 
+                      building b ON c.building_id = b.building_id
+                      JOIN 
+                      room r ON c.room_id = r.room_id
+                      WHERE 
+                      c.camera_id = :camera_id";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':camera_id', $camera_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
     // Method to add a new camera
     public function addCamera($building_id, $room_id, $camera_name, $status)
     {
@@ -38,67 +110,6 @@ class Camera
 
         if ($stmt->execute()) {
             return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Method to get detailed camera information
-    public function getCamerasByStatus($status)
-    {
-        $query = "
-              SELECT 
-                  c.camera_id,
-                  c.camera_name,
-                  b.building_fullname,
-                  b.building_name,
-                  r.room_name,
-                  r.room_number,
-                  c.status
-              FROM 
-                  " . $this->table_name . " c
-              JOIN 
-                  building b ON c.building_id = b.building_id
-              JOIN 
-                  room r ON c.room_id = r.room_id
-              WHERE c.status = :status ";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-    // Method to get detailed camera information
-    public function getCamerasById($camera_id)
-    {
-        $query = "
-        SELECT 
-            c.camera_id,
-            c.camera_name,
-            c.building_id,
-            b.building_fullname,
-            b.building_name,
-            r.room_id,
-            r.room_name,
-            r.room_number,
-            c.status
-        FROM 
-            " . $this->table_name . " c
-        JOIN 
-            building b ON c.building_id = b.building_id
-        JOIN 
-            room r ON c.room_id = r.room_id
-        WHERE 
-            c.camera_id = :camera_id";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':camera_id', $camera_id, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($result) {
-            return $result;
         } else {
             return false;
         }

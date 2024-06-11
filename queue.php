@@ -1,3 +1,26 @@
+<?php
+session_start();
+require_once './class/building.php';
+require_once './class/department.php';
+require_once './class/classroom.php';
+require_once './class/queueSetup.php';
+require_once './class/room.php';
+require_once './class/camera.php';
+
+// create instance
+$building = new Building($conn);
+$room = new Room($conn);
+$camera = new Camera($conn);
+$queue_setup = new QueueSetup($conn);
+$department = new Department($conn);
+$classroom = new Classroom($conn);
+// Get department 
+$departments = $department->getDepartments();
+// Get queue
+$queue_setups = $queue_setup->getQueueSetups();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +50,23 @@
     <div class="container">
         <h1>Queue</h1>
     </div>
+
+    <div class="container">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
+    </div>
     <div class="container ">
         <div class="row">
             <div class="col">
@@ -45,38 +85,42 @@
                                 <thead class="table-thead">
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">หมวด</th>
-                                        <th scope="col">วิชา</th>
+                                        <th scope="col">ชื่อห้อง</th>
+                                        <th scope="col">แผนก</th>
                                         <th scope="col">วัน</th>
                                         <th scope="col">เริ่มถ่าย</th>
                                         <th scope="col">ส่งรูป</th>
                                         <th scope="col">อาคาร</th>
                                         <th scope="col">ห้อง</th>
                                         <th scope="col">กล้อง</th>
-                                        <th scope="col">แผนก</th>
-                                        <th scope="col">ห้อง</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="table1-active">
-                                        <td>22</td>
-                                        <td>?????????</td>
-                                        <td>??????</td>
-                                        <td>5</td>
-                                        <td>13:37:00</td>
-                                        <td>15:41:00</td>
-                                        <td>TC</td>
-                                        <td>102</td>
-                                        <td>001</td>
-                                        <td>??????</td>
-                                        <td>11</td>
-                                        <td>
-                                            <a class="btn btn-sm btn-warning" href="./queue/edit_queue.php">แก้ไข</a>
-                                            <a class="btn btn-sm btn-danger" href="">ลบ</a>
-                                        </td>
+                                    <?php foreach ($queue_setups as $queue) :
+                                        $classroomDetails = $classroom->getClassroomById($queue['classroom_id']);
+                                        $departmentDetails = $department->getDepartmenById($classroomDetails['department_id']);
+                                        $buildingDetails = $building->getBuildingsByBuildingId($queue['building_id']);
+                                        $roomDetails = $room->getRoomDetails($queue['room_id']);
+                                        $cameraDetails = $camera->getCamerasById($queue['camera_id']);
+                                    ?>
+                                        <tr class="table1-active">
+                                            <td scope="row"><?php echo htmlspecialchars($queue['queue_id']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($classroomDetails['class']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($departmentDetails['department_name']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($queue['day']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($queue['time_start']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($queue['time_stop']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($buildingDetails['building_name']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($roomDetails['room_name']); ?></td>
+                                            <td scope="row"><?php echo htmlspecialchars($cameraDetails['camera_name']); ?></td>
+                                            <td>
+                                                <a class="btn btn-sm btn-warning" href="./queue/edit_queue.php?id=<?php echo $queue['queue_id']; ?>">แก้ไข</a>
+                                                <a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete?');" href="./queue/delete_queue.php?id=<?php echo $queue['queue_id']; ?>">ลบ</a>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

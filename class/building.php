@@ -14,6 +14,18 @@ class Building
 
     }
 
+    // Method to get all buildings
+    public function getBuildings()
+    {
+        $query = "SELECT *
+                  FROM " . $this->table_name;
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
     // Method to get buildings and their rooms
     public function getBuildingsWithRooms()
     {
@@ -30,16 +42,16 @@ class Building
     }
 
     // Method to get all buildings
-    public function getBuildings()
+    public function getBuildingsByBuildingId($building_id)
     {
         $query = "SELECT building_id, building_fullname, building_name, time 
-                  FROM " . $this->table_name;
-
-
+                  FROM " . $this->table_name . "
+             WHERE building_id = :building_id";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':building_id', $building_id);
         $stmt->execute();
 
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
         return $results;
     }
     // Method to get rooms by building ID

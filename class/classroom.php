@@ -24,6 +24,31 @@ class Classroom
         return $result;
     }
 
+    // Method to get a classroom by classroom_id
+    public function getClassroomById($classroom_id)
+    {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE classroom_id = :classroom_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $stmt->bindParam(':classroom_id', $classroom_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    // Method to get classrooms by department_id
+    public function getClassroomsByDepartment($department_id)
+    {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE department_id = :department_id";
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameter
+        $stmt->bindParam(':department_id', $department_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // Method to add a new classroom
     public function addClassroom($department_id, $level, $sublevel, $class, $building_id, $room_id, $subject_id, $sub_subject_id, $line_token)
     {
@@ -49,30 +74,6 @@ class Classroom
         } else {
             return false;
         }
-    }
-    // Method to get a classroom by classroom_id
-    public function getClassroomById($classroom_id)
-    {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE classroom_id = :classroom_id";
-        $stmt = $this->conn->prepare($query);
-
-        // Bind parameter
-        $stmt->bindParam(':classroom_id', $classroom_id, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
-    }
-    // Method to get classrooms by department_id
-    public function getClassroomsByDepartment($department_id)
-    {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE department_id = :department_id";
-        $stmt = $this->conn->prepare($query);
-
-        // Bind parameter
-        $stmt->bindParam(':department_id', $department_id, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
     }
 
     // Method to update classroom

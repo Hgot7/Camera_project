@@ -68,6 +68,7 @@ $departments = $department->getDepartments();
                                 <?php endforeach; ?>
                             </select>
                             <div class="form-floating" style="display:flex;flex-direction:row;margin-top:initial">
+                                <a href="./subject/departmentmanage.php" class="btn btn-primary">จัดการแผนก</a>
                                 <a href="./subject/add_subject.php" class="btn btn-success" style="margin-right: 1px !important;">เพิ่มข้อมูลหมวดวิชา</a>
                             </div>
                         </div>
