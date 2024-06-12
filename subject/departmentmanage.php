@@ -112,6 +112,7 @@ $departments = $department->getDepartments();
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
                                 <thead class="table-thead">
                                     <tr>
+                                        <th scope="col">ID</th>
                                         <th scope="col">ชื่อแผนก</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -119,6 +120,7 @@ $departments = $department->getDepartments();
                                 <tbody>
                                     <?php foreach ($departments as $department) : ?>
                                         <tr class="table1-active">
+                                            <td scope="row"><?php echo htmlspecialchars($department['department_id']); ?></td>
                                             <td scope="row"><?php echo htmlspecialchars($department['department_name']); ?></td>
                                             <td>
                                                 <!-- <a class="btn btn-sm btn-warning" href="edit_department.php?id=<?php echo $department['department_id']; ?>">แก้ไข</a> -->

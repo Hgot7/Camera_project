@@ -81,8 +81,7 @@ CREATE TABLE classroom (
     FOREIGN KEY (subject_id) REFERENCES subject(subject_id),
     FOREIGN KEY (sub_subject_id) REFERENCES sub_subject(sub_subject_id),
     FOREIGN KEY (building_id) REFERENCES building(building_id),
-    FOREIGN KEY (room_id) REFERENCES room(room_id),
-    FOREIGN KEY (camera_id) REFERENCES camera(camera_id)
+    FOREIGN KEY (room_id) REFERENCES room(room_id)
 );
 
 CREATE TABLE queue_setup (

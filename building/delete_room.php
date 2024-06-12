@@ -6,10 +6,20 @@ $room = new Room($conn);
 // parametor
 $rooms_id = $_GET['id'];
 
-if ($room->deleteRoom($rooms_id)) {
-    $_SESSION['success'] = "room deleted successfully!";
+try {
+    if ($room->deleteRoom($rooms_id)) {
+        $_SESSION['success'] = "room deleted successfully!";
+    } else {
+        $_SESSION['error'] = "Failed to deleted room";
+    }
     header('location: ../building.php');
     exit;
-} else {
-    $_SESSION['error'] = "Failed to deleted room";
+} catch (PDOException $e) {
+    if ($e->getCode() == 23000) { // Integrity constraint violation
+        $_SESSION['error'] = "Cannot delete this room because it is being used in other records. Please remove those references first.";
+    } else {
+        $_SESSION['error'] = "Error: " . $e->getMessage();
+    }
+    header('location: ../building.php');
+    exit;
 }

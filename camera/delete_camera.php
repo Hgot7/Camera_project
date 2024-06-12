@@ -7,11 +7,21 @@ $camera = new Camera($conn);
 if (isset($_GET['id'])) {
     $camera_id = $_GET['id'];
 
-    if ($camera->deleteCamera($camera_id)) {
-        $_SESSION['success'] = "Success to delete camera";
+    try {
+        if ($camera->deleteCamera($camera_id)) {
+            $_SESSION['success'] = "Success to delete camera";
+        } else {
+            $_SESSION['error'] = "Failed to delete camera";
+        }
         header('Location: ../camera.php');
         exit;
-    } else {
-        $_SESSION['error'] = "Failed to delete camera";
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) { // Integrity constraint violation
+            $_SESSION['error'] = "Cannot delete this camera because it is being used in a queue setup. Please remove those references first.";
+        } else {
+            $_SESSION['error'] = "Error: " . $e->getMessage();
+        }
+        header('Location: ../camera.php');
+        exit;
     }
 }

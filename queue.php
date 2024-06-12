@@ -83,18 +83,24 @@ $queue_setups = $queue_setup->getQueueSetups();
                         <div class="table-responsive">
                             <table class="table text-center align-middle table-hover mb-0" style="padding: 0px; table-layout: auto !important;">
                                 <thead class="table-thead">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">ชื่อห้อง</th>
-                                        <th scope="col">แผนก</th>
-                                        <th scope="col">วัน</th>
-                                        <th scope="col">เริ่มถ่าย</th>
-                                        <th scope="col">ส่งรูป</th>
-                                        <th scope="col">อาคาร</th>
-                                        <th scope="col">ห้อง</th>
-                                        <th scope="col">กล้อง</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
+                                    <?php if (empty($queue_setups)) : ?>
+                                        <tr>
+                                            <th scope="col" class="text-center">No queue list</th>
+                                        </tr>
+                                    <?php else : ?>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">ชื่อห้อง</th>
+                                            <th scope="col">แผนก</th>
+                                            <th scope="col">วัน</th>
+                                            <th scope="col">เริ่มถ่าย</th>
+                                            <th scope="col">ส่งรูป</th>
+                                            <th scope="col">อาคาร</th>
+                                            <th scope="col">ห้อง</th>
+                                            <th scope="col">กล้อง</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    <?php endif; ?>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($queue_setups as $queue) :

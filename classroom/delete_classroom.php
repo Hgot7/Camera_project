@@ -12,12 +12,20 @@ $departments = $department->getDepartments();
 // Assume classroom_id is received from a form or URL parameter
 $classroom_id = $_GET['id']; // หรือใช้ GET แล้วแต่สถานการณ์
 
-if ($classroom->deleteClassroom($classroom_id)) {
-    $_SESSION['success'] = "Classroom deleted successfully!";
+try {
+    if ($classroom->deleteClassroom($classroom_id)) {
+        $_SESSION['success'] = "Classroom deleted successfully!";
+    } else {
+        $_SESSION['error'] = "Failed to delete classroom.";
+    }
     header('Location: ../classroom.php');
     exit;
-} else {
-    $_SESSION['error'] = "Failed to delete classroom.";
+} catch (PDOException $e) {
+    if ($e->getCode() == 23000) { // Integrity constraint violation
+        $_SESSION['error'] = "Cannot delete this classroom because it is being used in other records queue_setup. Please remove those references first.";
+    } else {
+        $_SESSION['error'] = "Error: " . $e->getMessage();
+    }
     header('Location: ../classroom.php');
     exit;
 }

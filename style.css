@@ -1548,8 +1548,7 @@ select:focus {
 .alert {
   width: 100%;
   margin: 0px 10px 0px 10px;
-  padding-left: 20px;
-  height: 50px;
+  padding: 20px;
   align-content: center;
   color: inherit;
   background-color: inherit;
