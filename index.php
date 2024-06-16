@@ -12,162 +12,35 @@
     <script src="./script.js"></script>
 </head>
 
-<body>
+<body style="background-image: url(./assets/images/bg.jpg);" class="d-flex align-items-center">
     <div class="overlay"></div>
-
     </div>
-    <?php include_once("./assets/components/header.php"); ?>
-    <?php include_once("./assets/components/sidebar.php"); ?>
-    <?php include_once("./assets/components/sidebarResponsive.php"); ?>
-
-    <div class="container">
-        <h1 style=" margin-bottom: inherit; margin-top: inherit;">Dashboard</h1>
-    </div>
-    <div class="container">
-        <div class="row row-cols-4">
-
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-icon">
-                            <i class="bi bi-building"></i>
-                        </div>
-                        <div class="card-item">
-                            <div class="card-header">
-                                <span class="">Building</span>
-                            </div>
-                            <div class="card-title">
-                                <span class="card-text-number">36</span>
-                                <span class="card-text"> Buildings</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <main class="form-signin w-100 m-auto">
+        <form action="signin.php" method="post">
+            <h1 class="h3 mb-3 fw-normal">Please Login</h1>
+            <div class="form-floating1">
+                <input type="text" name="inputusername" class="form-control" id="floatingInput" value="admin" placeholder="">
+                <label for="floatingInput">Username</label>
             </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-icon">
-                            <i class="bi bi-camera-fill"></i>
-                        </div>
-                        <div class="card-item">
-                            <div class="card-header">
-                                <span class="">Camera</span>
-                            </div>
-                            <div class="card-title">
-                                <span class="card-text-number">36</span>
-                                <span class="card-text"> Devices</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-icon">
-                            <i class="bi bi-box-seam"></i>
-                        </div>
-                        <div class="card-item">
-                            <div class="card-header">
-                                <span class="">Classroom</span>
-                            </div>
-                            <div class="card-title">
-                                <span class="card-text-number">36</span>
-                                <span class="card-text"> Total</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-icon">
-                            <i class="bi bi-mortarboard-fill"></i>
-                        </div>
-                        <div class="card-item">
-                            <div class="card-header">
-                                <span class="">Subject</span>
-                            </div>
-                            <div class="card-title">
-                                <span class="card-text-number">36</span>
-                                <span class="card-text"> Total</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <h1 style="margin-bottom: inherit;padding-left: 10px;">Camera Active</h1>
-            <div class="table-responsive">
-                <table class="table text-center align-middle table-hover mb-0">
-                    <thead class="table-thead">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">อาคาร</th>
-                            <th scope="col">ห้อง</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-active">
-                            <td scope="row">001</td>
-                            <td>อารามสงฆ์</td>
-                            <td>102</td>
-                            <td>ปิด</td>
-                        </tr>
-                        <tr class="table-active">
-                            <td scope="row">001</td>
-                            <td>อารามสงฆ์</td>
-                            <td>102</td>
-                            <td>ปิด</td>
-                        </tr>
-                        <tr class="table-active">
-                            <td scope="row">001</td>
-                            <td>อารามสงฆ์</td>
-                            <td>102</td>
-                            <td>ปิด</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="form-floating1 mt-2">
+                <input type="password" name="inputpassword" class="form-control" id="floatingPassword" value="admin_63" placeholder="">
+                <label for="floatingPassword">Password</label>
             </div>
 
-        </div>
-    </div>
+            <div class="form-check1 text-start my-3 mb-2">
+                <input class="form-check-input1" type="checkbox" name="remember" checked="" id="flexCheckDefault">
+                <label class="form-check-label rememberme" for="flexCheckDefault">
+                    Remember me
+                </label>
+            </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <P>Lorem.</P>
-                    </div>
-                    <div class="card-body">
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                </div>
-            </div>
-        </div>
-    </div>
+            <button class="btn btn-primary btn-width" name="signin" type="submit">Login</button>
+
+            <p class="text-muted">©Rayong Technical</p>
+        </form>
+    </main>
+
+
 </body>
 
 </html>

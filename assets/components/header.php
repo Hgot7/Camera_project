@@ -7,7 +7,7 @@
     <div class="profilelogo">
         <i class="bi bi-person-circle icon"></i>
         <div class="text header-text">
-            <span class="firstname">Natchapon</span>
+            <span class="firstname">Admin@All</span>
             <span class="role">Admin</span>
         </div>
     </div>

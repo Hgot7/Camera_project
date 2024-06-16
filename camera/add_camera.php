@@ -110,7 +110,7 @@ if (isset($_POST['addcamera'])) {
                                 <label for="room" class="form-label" style="white-space: nowrap;">สถานะกล้อง</label>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" name="statuscamera" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked style="margin: initial;">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">on off</label>
+                                    <label class="form-check-label1" for="flexSwitchCheckChecked">on off</label>
                                 </div>
                             </div>
                             <button type="submit" name="addcamera" class="btn btn-success">บันทึก</button>

@@ -64,7 +64,7 @@
             <li class="mode">
                 <i class="bi bi-person-circle sidebar-responsive-icon"></i>
                 <div class="sidebar-responsive-text">
-                    <span class="firstname">Natchapon</span>
+                    <span class="firstname">Admin@All</span>
                     <span class="role">Admin</span>
                 </div>
             </li>

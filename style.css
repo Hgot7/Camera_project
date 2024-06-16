@@ -543,7 +543,7 @@ body.dark .switch::before {
   opacity: 1;
 }
 
-/* ==============reusable css */
+/* ===============reusable css */
 .sidebar-responsive .text {
   font-size: 16px;
   font-weight: 500;
@@ -804,6 +804,10 @@ body.dark .menu-bar .mode i.moon {
   /* height: 100%; */
 }
 
+.w-100 {
+  width: 100% !important;
+}
+
 .bg-secondary {
   background-color: #6c757d;
   /* สีพื้นหลังสอง */
@@ -816,11 +820,28 @@ body.dark .menu-bar .mode i.moon {
 
 .p-4 {
   padding: 1.5rem;
-  /* การเพิ่ม Padding 4 ทางทั้งสี่ของ Element */
+}
+
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.m-auto {
+  margin: auto !important;
 }
 
 /* ============================= margin */
 /* กำหนด margin-top */
+
 .mt-0 {
   margin-top: 0rem !important;
 }
@@ -1252,7 +1273,18 @@ select:focus {
   position: relative;
 }
 
+.form-floating1 {
+  position: relative;
+}
+
 .form-floating>.form-control {
+  height: calc(3.5rem + 2px);
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-floating1>.form-control {
   height: calc(3.5rem + 2px);
   padding: 1rem;
   margin-top: 1rem;
@@ -1281,7 +1313,8 @@ select:focus {
 /* /////////////////////////////////////////////////////////////// custom input */
 .form-control {
   display: block;
-  width: 100%;
+  width: -webkit-fill-available;
+  /* width: 100%; */
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-family: 'Kanit', sans-serif;
@@ -1319,6 +1352,150 @@ select:focus {
   width: 1%;
   min-width: 0;
 }
+
+
+
+/* /////////////////////////////////////////////////////////////// custom form-check-input */
+
+.form-check-input {
+  z-index: -1;
+  width: 2em;
+  height: 1em;
+  font-size: 2em;
+  background-color: #e63745;
+  border-radius: 1em;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+.form-check-input:checked {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.form-check-input:disabled {
+  pointer-events: none;
+  background-color: #28a745;
+}
+
+.form-check-label1 {
+  z-index: 1;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  /* Prevent wrapping */
+  position: absolute;
+  top: 38px;
+  left: 3px;
+  user-select: none;
+  color: #FFF;
+}
+
+/* CSS สำหรับการปรับแต่งเพิ่มเติม */
+.form-check-input::after {
+  content: '';
+  display: block;
+  width: 1em;
+  z-index: 2;
+  /* Increased z-index to ensure it's on top of labels */
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.15s ease-in-out;
+  transform: translateX(0.00em);
+}
+
+
+.form-check-input:checked::after {
+  transform: translateX(1em);
+}
+
+/* /////////////////////////////////////////////////////////////// custom sign-in page */
+
+/* Basic form layout */
+.form-signin {
+  font-family: 'Kanit', sans-serif;
+  max-width: 330px;
+  padding: 15px;
+}
+
+/* Form floating label styles */
+.form-floating1>.form-control,
+.form-floating1>.form-control-plaintext,
+.form-floating1>.form-select {
+  height: calc(2.5rem + 2px);
+  padding: 0em 2.25rem;
+}
+
+
+.form-floating1>label {
+  position: absolute;
+  font-size: 20px;
+  top: -10px;
+  left: 20px;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.form-floating1>.form-control:focus~label,
+.form-floating1>.form-control:not(:placeholder-shown)~label {
+  top: -2px;
+  opacity: 0.80;
+  transform: scale(0.91) translateY(-1rem) translateX(0px);
+}
+
+.form-floating1>.form-control-plaintext:focus,
+.form-floating1>.form-control-plaintext:not(:placeholder-shown),
+.form-floating1>.form-control:focus,
+.form-floating1>.form-control:not(:placeholder-shown) {
+  font-size: 18px;
+  padding-top: 1.2rem;
+  padding-bottom: .1rem;
+}
+
+
+/* Checkbox styles */
+.form-check1 {
+  position: relative;
+  display: block;
+  padding-left: 1.5rem;
+}
+
+.form-check-input1 {
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.5rem;
+}
+
+.form-check-input1:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.form-check-input1:checked:focus {
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+
+h1.h3.mb-3.fw-normal {
+  color: #FFF;
+}
+
+label.form-check-label.rememberme {
+  color: #FFF;
+}
+
+button.btn.btn-primary.btn-width {
+  font-size: 20px;
+}
+
 
 /* /////////////////////////////////////////////////////////////// custom tab-pane */
 .tab-pane {
@@ -1480,69 +1657,6 @@ select:focus {
   border-color: transparent;
 }
 
-
-/* /////////////////////////////////////////////////////////////// custom form-check-input */
-
-.form-check-input {
-  z-index: -1;
-  width: 2em;
-  height: 1em;
-  font-size: 2em;
-  background-color: #e63745;
-  border-radius: 1em;
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.form-check-input:checked {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-/* .form-check-input:focus {
-  border-color: #86b7fe;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-} */
-
-.form-check-input:disabled {
-  pointer-events: none;
-  background-color: #28a745;
-}
-
-.form-check-label {
-  z-index: 1;
-  margin-left: 0.5rem;
-  cursor: pointer;
-  white-space: nowrap;
-  /* Prevent wrapping */
-  position: absolute;
-  top: 38px;
-  left: 3px;
-  user-select: none;
-  color: #FFF;
-}
-
-/* CSS สำหรับการปรับแต่งเพิ่มเติม */
-.form-check-input::after {
-  content: '';
-  display: block;
-  width: 1em;
-  z-index: 2;
-  /* Increased z-index to ensure it's on top of labels */
-  height: 1em;
-  border-radius: 50%;
-  background-color: #fff;
-  transition: transform 0.15s ease-in-out;
-  transform: translateX(0.00em);
-}
-
-
-.form-check-input:checked::after {
-  transform: translateX(1em);
-}
 
 /* /////////////////////////////////////////////////////////////// custom aleart */
 .alert {
