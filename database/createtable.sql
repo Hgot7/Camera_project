@@ -2,6 +2,17 @@ CREATE DATABASE camera_project;
 
 USE camera_project;
 
+CREATE TABLE user (
+    user_id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    full_name VARCHAR(100),
+    role VARCHAR(50),
+    time TIMESTAMP,
+    PRIMARY KEY (user_id)
+);
+
 CREATE TABLE building (
     building_id INT NOT NULL AUTO_INCREMENT,
     building_fullname TEXT,

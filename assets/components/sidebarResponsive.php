@@ -56,7 +56,7 @@
         </div>
         <div class="bottom-content">
             <li class="logout">
-                <a href="#">
+                <a href="../../logout.php">
                     <i class="bi bi-box-arrow-left icon"></i>
                     <span class="text nav-text">Logout</span>
                 </a>

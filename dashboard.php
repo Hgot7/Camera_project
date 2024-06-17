@@ -1,3 +1,17 @@
+<?php
+session_start();
+include_once('./class/user.php');
+$user = new User($conn);
+if (!isset($_SESSION['admin_login'])) {
+    // Check remember me token
+    if (!$user->checkRememberMe()) {
+        header('Location: ./index.php');
+        $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ';
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +39,23 @@
 
     <div class="container">
         <h1 style=" margin-bottom: inherit; margin-top: inherit;">Dashboard</h1>
+    </div>
+
+    <div class="container">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
     </div>
     <div class="container">
         <div class="row row-cols-4">

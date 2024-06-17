@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,20 +19,35 @@
 <body style="background-image: url(./assets/images/bg.jpg);" class="d-flex align-items-center">
     <div class="overlay"></div>
     </div>
+
     <main class="form-signin w-100 m-auto">
-        <form action="signin.php" method="post">
+        <?php if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger" role="alert" style="width: -webkit-fill-available;margin: initial;">
+                <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?></div>
+        <?php  } ?>
+        <?php if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert" style="width: -webkit-fill-available;margin: initial;">
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?></div>
+        <?php  } ?>
+        <form action="./login.php" method="post">
             <h1 class="h3 mb-3 fw-normal">Please Login</h1>
             <div class="form-floating1">
-                <input type="text" name="inputusername" class="form-control" id="floatingInput" value="admin" placeholder="">
+                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="">
                 <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating1 mt-2">
-                <input type="password" name="inputpassword" class="form-control" id="floatingPassword" value="admin_63" placeholder="">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="">
                 <label for="floatingPassword">Password</label>
             </div>
 
             <div class="form-check1 text-start my-3 mb-2">
-                <input class="form-check-input1" type="checkbox" name="remember" checked="" id="flexCheckDefault">
+                <input class="form-check-input1" type="checkbox" name="remember" id="flexCheckDefault">
                 <label class="form-check-label rememberme" for="flexCheckDefault">
                     Remember me
                 </label>
