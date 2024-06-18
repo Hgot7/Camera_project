@@ -10,6 +10,8 @@ CREATE TABLE user (
     full_name VARCHAR(100),
     role VARCHAR(50),
     time TIMESTAMP,
+    remember_token VARCHAR(255) NULL,
+    remember_token_expiry DATETIME NULL,
     PRIMARY KEY (user_id)
 );
 

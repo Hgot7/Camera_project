@@ -1,5 +1,15 @@
 <?php
 session_start();
+include_once('./class/user.php');
+
+// Initialize User class
+$user = new User($conn);
+
+// Check if the remember me cookie is set and valid
+if ($user->checkRememberMe()) {
+    header('Location: dashboard.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

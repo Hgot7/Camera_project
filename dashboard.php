@@ -1,6 +1,11 @@
 <?php
 session_start();
 include_once('./class/user.php');
+include_once('./class/building.php');
+include_once('./class/camera.php');
+include_once('./class/department.php');
+include_once('./class/classroom.php');
+
 $user = new User($conn);
 if (!isset($_SESSION['admin_login'])) {
     // Check remember me token
@@ -10,6 +15,23 @@ if (!isset($_SESSION['admin_login'])) {
         exit;
     }
 }
+
+// instance
+$building = new Building($conn);
+$camera = new Camera($conn);
+$classroom = new Classroom($conn);
+$department = new department($conn);
+
+// get array data
+$buildings = $building->getBuildings();
+$cameras = $camera->getCameras();
+$cameraDetailsActive = $camera->getCamerasByStatus(1);
+$classrooms = $classroom->getClassrooms();
+$subjects = $department->getSubjects();
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +93,7 @@ if (!isset($_SESSION['admin_login'])) {
                                 <span class="">Building</span>
                             </div>
                             <div class="card-title">
-                                <span class="card-text-number">36</span>
+                                <span class="card-text-number"><?php echo count($buildings); ?></span>
                                 <span class="card-text"> Buildings</span>
                             </div>
                         </div>
@@ -89,7 +111,7 @@ if (!isset($_SESSION['admin_login'])) {
                                 <span class="">Camera</span>
                             </div>
                             <div class="card-title">
-                                <span class="card-text-number">36</span>
+                                <span class="card-text-number"><?php echo count($cameras); ?></span>
                                 <span class="card-text"> Devices</span>
                             </div>
                         </div>
@@ -107,7 +129,7 @@ if (!isset($_SESSION['admin_login'])) {
                                 <span class="">Classroom</span>
                             </div>
                             <div class="card-title">
-                                <span class="card-text-number">36</span>
+                                <span class="card-text-number"><?php echo count($classrooms); ?></span>
                                 <span class="card-text"> Total</span>
                             </div>
                         </div>
@@ -125,7 +147,7 @@ if (!isset($_SESSION['admin_login'])) {
                                 <span class="">Subject</span>
                             </div>
                             <div class="card-title">
-                                <span class="card-text-number">36</span>
+                                <span class="card-text-number"><?php echo count($subjects); ?></span>
                                 <span class="card-text"> Total</span>
                             </div>
                         </div>
@@ -140,32 +162,30 @@ if (!isset($_SESSION['admin_login'])) {
             <div class="table-responsive">
                 <table class="table text-center align-middle table-hover mb-0">
                     <thead class="table-thead">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">อาคาร</th>
-                            <th scope="col">ห้อง</th>
-                            <th scope="col">Action</th>
-                        </tr>
+                        <?php if (empty($cameraDetailsActive)) : ?>
+                            <tr>
+                                <th scope="col" class="text-center">No camera is on</th>
+                            </tr>
+                        <?php else : ?>
+                            <tr>
+                                <th scope="col">ชื่อกล้อง</th>
+                                <th scope="col">อาคาร</th>
+                                <th scope="col">ห้องเรียนในอาคาร</th>
+
+                            </tr>
+                        <?php endif; ?>
                     </thead>
+
+                    
                     <tbody>
-                        <tr class="table-active">
-                            <td scope="row">001</td>
-                            <td>อารามสงฆ์</td>
-                            <td>102</td>
-                            <td>ปิด</td>
-                        </tr>
-                        <tr class="table-active">
-                            <td scope="row">001</td>
-                            <td>อารามสงฆ์</td>
-                            <td>102</td>
-                            <td>ปิด</td>
-                        </tr>
-                        <tr class="table-active">
-                            <td scope="row">001</td>
-                            <td>อารามสงฆ์</td>
-                            <td>102</td>
-                            <td>ปิด</td>
-                        </tr>
+                        <?php foreach ($cameraDetailsActive as $detail) : ?>
+                            <tr class="table-active">
+                                <td scope="row"><?php echo htmlspecialchars($detail['camera_name']) ?></td>
+                                <td><?php echo  htmlspecialchars($detail['building_fullname']) . " - " . htmlspecialchars($detail['building_name']) ?></td>
+                                <td><?php echo  htmlspecialchars($detail['room_name']) . " - " . htmlspecialchars($detail['room_number']) ?></td>
+
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -173,35 +193,6 @@ if (!isset($_SESSION['admin_login'])) {
         </div>
     </div>
 
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <P>Lorem.</P>
-                    </div>
-                    <div class="card-body">
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id numquam ab cum, a architecto laboriosam doloremque quidem cupiditate modi debitis rerum molestias enim, autem, iusto quis delectus corrupti. Tenetur, eaque.</P>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </body>
 
 </html>

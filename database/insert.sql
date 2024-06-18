@@ -1,3 +1,8 @@
+
+-- Insert user admin password : admin_007
+INSERT INTO user (username, password, email, full_name, role, time)
+VALUES ('admin', '$2y$10$algUo2AmT6dHmPmonI.1KOlSNu3Gvx37fPYW8iS8Xgt4066/bJ99.', 'admin@example.com', 'AdminName', 'admin', NOW());
+
 -- Insert departments
 INSERT INTO department (department_name) VALUES 
 ('แผนกวิชาคอมพิวเตอร์'),
