@@ -4,7 +4,7 @@ $room = new Room($conn);
 
 if (isset($_POST['building_id'])) {
     $building_id = $_POST['building_id'];
-    if ($building_id =='0') {
+    if ($building_id =='') {
         // Handle the case where $building_id is empty (null or "")
         $output = '<table class="table text-center align-middle table-hover mb-0" style="padding: 0px;">
           <thead class="table-thead">

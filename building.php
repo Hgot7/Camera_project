@@ -1,5 +1,16 @@
 <?php
 session_start();
+include_once('./class/user.php');
+$user = new User($conn);
+if (!isset($_SESSION['admin_login'])) {
+    // Check remember me token
+    if (!$user->checkRememberMe()) {
+        header('Location: ./index.php');
+        $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ';
+        exit;
+    }
+}
+
 require_once './class/building.php';
 // create instance of class in class/building.php
 $building = new Building($conn);
@@ -64,7 +75,7 @@ $buildings = $building->getBuildings();
                         <label for="building" class="form-label">ชื่ออาคาร</label>
                         <div class="col mb-2">
                             <select class="form-select" name="building_id" id="building" aria-label="Floating label select example">
-                                <option value="0" selected>เลือกอาคาร</option>
+                                <option value="" selected>เลือกอาคาร</option>
                                 <?php foreach ($buildings as $buildingOption) : ?>
                                     <option value="<?php echo $buildingOption['building_id']; ?>">
                                         <?php echo htmlspecialchars($buildingOption['building_fullname']) . " - " . htmlspecialchars($buildingOption['building_name']); ?>

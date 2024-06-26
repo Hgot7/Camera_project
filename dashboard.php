@@ -1,11 +1,6 @@
 <?php
 session_start();
 include_once('./class/user.php');
-include_once('./class/building.php');
-include_once('./class/camera.php');
-include_once('./class/department.php');
-include_once('./class/classroom.php');
-
 $user = new User($conn);
 if (!isset($_SESSION['admin_login'])) {
     // Check remember me token
@@ -15,6 +10,11 @@ if (!isset($_SESSION['admin_login'])) {
         exit;
     }
 }
+
+include_once('./class/building.php');
+include_once('./class/camera.php');
+include_once('./class/department.php');
+include_once('./class/classroom.php');
 
 // instance
 $building = new Building($conn);
@@ -176,7 +176,7 @@ $subjects = $department->getSubjects();
                         <?php endif; ?>
                     </thead>
 
-                    
+
                     <tbody>
                         <?php foreach ($cameraDetailsActive as $detail) : ?>
                             <tr class="table-active">

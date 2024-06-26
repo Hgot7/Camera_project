@@ -1,4 +1,15 @@
 <?php
+session_start();
+include_once('../class/user.php');
+$user = new User($conn);
+if (!isset($_SESSION['admin_login'])) {
+    // Check remember me token
+    if (!$user->checkRememberMe()) {
+        header('Location: ../index.php');
+        $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ';
+        exit;
+    }
+}
 require_once '../class/camera.php';
 
 // ตรวจสอบว่ามีการส่งค่า camera_id หรือไม่
@@ -7,11 +18,12 @@ if (isset($_GET['id'])) {
 
     // สร้างอินสแตนซ์ของคลาส Camera
     $camera = new Camera($conn);
+    $cameraDetails = $camera->getCamerasById($camera_id);
 
     // เรียกใช้เมธอด updateStatusCamera
     if ($camera->updateStatusCamera($camera_id)) {
         // ถ้าการอัปเดตสำเร็จ
-        $_SESSION['success'] = "camera status update completed successfully";
+        $_SESSION['success'] =  $cameraDetails['camera_name'] . " status update completed successfully";
     } else {
         // ถ้าการอัปเดตล้มเหลว
         $_SESSION['error'] = "camera status update failed";

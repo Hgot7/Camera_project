@@ -1,5 +1,16 @@
 <?php
 session_start();
+include_once('./class/user.php');
+$user = new User($conn);
+if (!isset($_SESSION['admin_login'])) {
+    // Check remember me token
+    if (!$user->checkRememberMe()) {
+        header('Location: ./index.php');
+        $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ';
+        exit;
+    }
+}
+
 require_once './class/building.php';
 require_once './class/department.php';
 require_once './class/classroom.php';
@@ -71,6 +82,39 @@ $queue_setups = $queue_setup->getQueueSetups();
         <div class="row">
             <div class="col">
                 <div class="card1">
+                    <div class="card1-body">
+                        <div class="time">
+                            <div class="time-colon">
+                                <div class="time-text">
+                                    <span class="num hour_num"><?php echo date('h'); ?></span>
+                                    <span class="text">Hours</span>
+                                </div>
+                                <span class="colon">:</span>
+                            </div>
+                            <div class="time-colon">
+                                <div class="time-text">
+                                    <span class="num min_num"><?php echo date('i'); ?></span>
+                                    <span class="text">Minutes</span>
+                                </div>
+                                <span class="colon">:</span>
+                            </div>
+                            <div class="time-colon">
+                                <div class="time-text">
+                                    <span class="num sec_num"><?php echo date('s'); ?></span>
+                                    <span class="text">Seconds</span>
+                                </div>
+                                <span class="am_pm"><?php echo date('A'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="col">
+                <div class="card1">
                     <div class="card1-header">
                         <div class="col mb-0">
                             <p style="align-content: center;margin: 0px 0px 0px 0px;">รายการคิวถ่ายรูป</p>
@@ -137,5 +181,39 @@ $queue_setups = $queue_setup->getQueueSetups();
 
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateTime() {
+            let date = new Date(),
+                hour = date.getHours(),
+                min = date.getMinutes(),
+                sec = date.getSeconds();
+
+            let d = hour < 12 ? "AM" : "PM";
+            hour = hour % 12 || 12; // Convert to 12-hour format
+
+            // Adding leading zeros
+            hour = hour.toString().padStart(2, '0');
+            min = min.toString().padStart(2, '0');
+            sec = sec.toString().padStart(2, '0');
+
+            document.querySelector(".hour_num").innerText = hour;
+            document.querySelector(".min_num").innerText = min;
+            document.querySelector(".sec_num").innerText = sec;
+            document.querySelector(".am_pm").innerText = d;
+        }
+
+        // Update time immediately and then every second
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Dark mode toggle (if needed)
+        let timeContainer = document.querySelector(".time");
+        document.querySelector(".icons").onclick = () => {
+            timeContainer.classList.toggle("dark");
+        }
+    });
+</script>
 
 </html>
